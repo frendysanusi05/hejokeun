@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/utils/app_regex.dart';
@@ -12,9 +15,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  String? errorMessage = '';
   final _formKey = GlobalKey<FormState>();
 
   late final TextEditingController emailController;
+  late final TextEditingController fullnameController;
+  late final TextEditingController nicknameController;
   late final TextEditingController passwordController;
   late final TextEditingController confirmPasswordController;
 
@@ -24,6 +30,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void initializeControllers() {
     emailController = TextEditingController()..addListener(controllerListeners);
+    fullnameController = TextEditingController()
+      ..addListener(controllerListeners);
+    nicknameController = TextEditingController()
+      ..addListener(controllerListeners);
     passwordController = TextEditingController()
       ..addListener(controllerListeners);
     confirmPasswordController = TextEditingController()
@@ -32,16 +42,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void disposeControllers() {
     emailController.dispose();
+    fullnameController.dispose();
+    nicknameController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
   }
 
   void controllerListeners() {
     final email = emailController.text;
+    final fullname = fullnameController.text;
+    final nickname = nicknameController.text;
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
 
-    if (email.isEmpty && password.isEmpty && confirmPassword.isEmpty) {
+    if (email.isEmpty &&
+        fullname.isEmpty &&
+        nickname.isEmpty &&
+        password.isEmpty &&
+        confirmPassword.isEmpty) {
       return;
     }
 
@@ -49,6 +67,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
       fieldValidNotifier.value = true;
     } else {
       fieldValidNotifier.value = false;
+    }
+  }
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      addUserDetails(
+        fullnameController.text,
+        nicknameController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
+  Future<void> addUserDetails(
+    String fullname,
+    String nickname,
+  ) async {
+    try {
+      final users = FirebaseFirestore.instance.collection('users');
+      users.add({
+        'fullname': fullname,
+        'nickname': nickname,
+      });
+    } on FirebaseException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
     }
   }
 
@@ -88,6 +141,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
               key: _formKey,
               child: Column(
                 children: [
+                  AppTextFormField(
+                    controller: fullnameController,
+                    fieldText: "Nama Lengkap",
+                    labelText: "Masukkan nama lengkap Anda",
+                    required: true,
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.name,
+                    onChanged: (_) => _formKey.currentState?.validate(),
+                  ),
+                  const SizedBox(height: 16),
+                  AppTextFormField(
+                    controller: nicknameController,
+                    fieldText: "Nama Panggilan",
+                    labelText: "Masukkan nama panggilan Anda",
+                    required: true,
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.name,
+                    onChanged: (_) => _formKey.currentState?.validate(),
+                  ),
+                  const SizedBox(height: 16),
                   AppTextFormField(
                     controller: emailController,
                     fieldText: "E-mail",
@@ -209,9 +282,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   buttonColor: kAG0,
                   textColor: Colors.white,
                   isDisabled: !isValid,
-                  onPressed: () {
-                    Navigator.pushNamed(context, SignUpScreen.id);
-                  },
+                  onPressed: createUserWithEmailAndPassword,
                 );
               },
             )
