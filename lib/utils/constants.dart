@@ -7,6 +7,7 @@ const Color kCamel = Color(0xFFB99470);
 const Color kBrown = Color(0xFF785432);
 const Color kDarkBrown = Color(0xFF35210E);
 const Color kLabel = Color(0xFF3C3C43);
+const Color kDisabledBtn = Color(0xFF1D1B20);
 
 // Aloe Green
 const Color kAG0 = Color(0xFF404C37);

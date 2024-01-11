@@ -1,6 +1,7 @@
 // import 'package:fe_hejokeun/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
+import 'package:hejokeun/screens/signup_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -16,64 +17,65 @@ class WelcomeScreen extends StatelessWidget {
           child: Container(
             height: 812,
             padding: const EdgeInsets.all(25),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TopScreenImage(screenImageName: 'logo.png'),
-                SizedBox(height: 70),
+                const TopScreenImage(screenImageName: 'logo.png'),
+                const SizedBox(height: 70),
                 Padding(
-                  padding: EdgeInsets.only(right: 15, left: 15, bottom: 15),
+                  padding:
+                      const EdgeInsets.only(right: 15, left: 15, bottom: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ScreenTitle(title: 'Selamat datang di Hejokeun!'),
-                      Text(
+                      const ScreenTitle(title: 'Selamat datang di Hejokeun!'),
+                      const Text(
                         'Aplikasi Eco green ...',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: kDarkBrown, fontSize: kBR4),
                       ),
-                      SizedBox(height: 103),
+                      const SizedBox(height: 103),
                       Hero(
                         tag: 'signup_btn',
                         child: CustomButton(
                           buttonText: 'Sign Up',
                           buttonColor: kAG1,
                           textColor: Colors.white,
-                          // onPressed: () {
-                          //   Navigator.pushNamed(context, SignUpScreen.id);
-                          // },
+                          onPressed: () {
+                            Navigator.pushNamed(context, SignUpScreen.id);
+                          },
                         ),
                       ),
-                      SizedBox(height: 12),
+                      const SizedBox(height: 12),
                       Hero(
                         tag: 'continue_with_google_btn',
                         child: CustomButton(
                           buttonText: 'Continue with Google',
                           isOutlined: true,
-                          // onPressed: () {
-                          //   Navigator.pop(context);
-                          // },
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                         ),
                       ),
-                      SizedBox(height: 12),
+                      const SizedBox(height: 12),
                       Hero(
                         tag: 'continue_with_facebook_btn',
                         child: CustomButton(
                           buttonText: 'Continue with Facebook',
                           isOutlined: true,
-                          // onPressed: () {
-                          //   Navigator.pop(context);
-                          // },
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                         ),
                       ),
-                      SizedBox(height: 12),
+                      const SizedBox(height: 12),
                       Hero(
                         tag: 'login_btn',
                         child: CustomButton(
                           buttonText: 'Log In',
-                          // onPressed: () {
-                          //   Navigator.pop(context);
-                          // },
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                         ),
                       ),
                     ],
