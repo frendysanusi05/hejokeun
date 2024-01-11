@@ -1,6 +1,5 @@
 import 'package:hejokeun/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class TopScreenImage extends StatelessWidget {
   const TopScreenImage({super.key, required this.screenImageName});
@@ -9,15 +8,13 @@ class TopScreenImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        child: Align(
-          alignment: Alignment.center,
-          child: Image.asset(
-            'assets/images/$screenImageName',
-            width: 165.38,
-            height: 200,
-            fit: BoxFit.contain,
-          ),
+      child: Align(
+        alignment: Alignment.center,
+        child: Image.asset(
+          'assets/images/$screenImageName',
+          width: 165.38,
+          height: 200,
+          fit: BoxFit.contain,
         ),
       ),
     );
