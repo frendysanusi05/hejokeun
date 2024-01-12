@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/main_screen.dart';
 import 'package:hejokeun/utils/app_regex.dart';
 import 'package:hejokeun/utils/constants.dart';
 
@@ -227,12 +228,15 @@ class _LoginScreenState extends State<LoginScreen> {
               valueListenable: fieldValidNotifier,
               builder: (_, isValid, __) {
                 return CustomButton(
-                  buttonText: 'Log In',
-                  buttonColor: kAG0,
-                  textColor: Colors.white,
-                  isDisabled: !isValid,
-                  onPressed: signInWithEmailAndPassword,
-                );
+                    buttonText: 'Log In',
+                    buttonColor: kAG0,
+                    textColor: Colors.white,
+                    isDisabled: !isValid,
+                    onPressed: () {
+                      signInWithEmailAndPassword;
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, MainScreen.id, (route) => false);
+                    });
               },
             )
           ],

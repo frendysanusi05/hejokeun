@@ -8,7 +8,7 @@ import 'package:hejokeun/utils/constants.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
-  static String id = 'home_screen';
+  static String id = 'welcome_screen';
 
   @override
   Widget build(BuildContext context) {
