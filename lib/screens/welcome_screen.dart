@@ -1,5 +1,6 @@
 // import 'package:fe_hejokeun/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:hejokeun/screens/login_screen.dart';
 import 'package:hejokeun/screens/signup_screen.dart';
@@ -56,7 +57,8 @@ class WelcomeScreen extends StatelessWidget {
                         buttonText: 'Continue with Google',
                         isOutlined: true,
                         onPressed: () {
-                          Navigator.pop(context);
+                          Auth().signInWithGoogle();
+                          // Navigator.pushNamed(context, LoginScreen.id);
                         },
                       ),
                     ),
