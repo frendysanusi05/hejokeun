@@ -1,8 +1,19 @@
-import 'package:hejokeun/screens/signup_screen.dart';
-import 'package:hejokeun/screens/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/signup_oauth_screen.dart';
+import 'package:hejokeun/screens/home_screen.dart';
+import 'package:hejokeun/screens/signup_successful_screen.dart';
+import 'firebase_options.dart';
+import 'package:hejokeun/screens/main_screen.dart';
+import 'package:hejokeun/screens/signup_screen.dart';
+import 'package:hejokeun/screens/login_screen.dart';
+import 'package:hejokeun/screens/welcome_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -22,6 +33,12 @@ class MyApp extends StatelessWidget {
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         SignUpScreen.id: (context) => const SignUpScreen(),
+        SignUpOauthScreen.id: (context) => const SignUpOauthScreen(),
+        LoginScreen.id: (context) => const LoginScreen(),
+        SignUpSuccessfullScreen.id: (context) =>
+            const SignUpSuccessfullScreen(),
+        MainScreen.id: (context) => const MainScreen(),
+        HomeScreen.id: (context) => const HomeScreen(),
       },
     );
   }
