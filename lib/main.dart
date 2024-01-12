@@ -1,9 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:hejokeun/screens/signup_screen.dart';
-import 'package:hejokeun/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'firebase_options.dart';
+
+import 'package:hejokeun/screens/signup_screen.dart';
+import 'package:hejokeun/screens/login_screen.dart';
+import 'package:hejokeun/screens/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         SignUpScreen.id: (context) => const SignUpScreen(),
+        LoginScreen.id: (context) => const LoginScreen(),
       },
     );
   }

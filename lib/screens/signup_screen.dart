@@ -69,6 +69,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
 
+    errorMessage = '';
+
     bool fieldIsEmpty = email.isEmpty ||
         fullname.isEmpty ||
         nickname.isEmpty ||
@@ -108,6 +110,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       setState(() {
         errorMessage = e.message;
       });
+
+      _formKey.currentState?.validate();
     }
   }
 
@@ -223,11 +227,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.emailAddress,
                     onChanged: (_) => _formKey.currentState?.validate(),
                     validator: (value) {
-                      return value!.isEmpty
-                          ? "Masukkan e-mail Anda"
-                          : AppRegex.emailRegex.hasMatch(value)
+                      return errorMessage!.isNotEmpty
+                          ? "E-mail Anda sudah digunakan"
+                          : value!.isEmpty
                               ? null
-                              : "E-mail Anda invalid";
+                              : AppRegex.emailRegex.hasMatch(value)
+                                  ? null
+                                  : "E-mail Anda invalid";
                     },
                   ),
                   const SizedBox(height: 16),
@@ -243,11 +249,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         textInputType: TextInputType.visiblePassword,
                         obscureText: passwordObscure,
                         onChanged: (_) => _formKey.currentState?.validate(),
-                        validator: (value) {
-                          return value!.isEmpty
-                              ? "Masukkan password Anda"
-                              : null;
-                        },
                         suffixIcon: Focus(
                           /// If false,
                           ///
@@ -289,12 +290,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         obscureText: confirmPasswordObscure,
                         onChanged: (_) => _formKey.currentState?.validate(),
                         validator: (value) {
-                          return value!.isEmpty
-                              ? "Masukkan kembali password Anda"
-                              : passwordController.text ==
-                                      confirmPasswordController.text
-                                  ? null
-                                  : "Password tidak sama";
+                          return passwordController.text ==
+                                  confirmPasswordController.text
+                              ? null
+                              : "Password tidak sama";
                         },
                         suffixIcon: Focus(
                           /// If false,

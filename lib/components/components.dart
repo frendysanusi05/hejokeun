@@ -116,6 +116,7 @@ class AppTextFormField extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.onEditingComplete,
+    this.borderColor,
   });
 
   final String fieldText;
@@ -131,6 +132,7 @@ class AppTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final void Function()? onEditingComplete;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -179,8 +181,8 @@ class AppTextFormField extends StatelessWidget {
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(
-                  color: kAG2,
+                borderSide: BorderSide(
+                  color: borderColor ?? kAG2,
                   width: 1.0,
                 ),
               ),
