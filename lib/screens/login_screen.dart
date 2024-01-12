@@ -69,45 +69,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void showErrorMessage() {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Stack(
-          children: [
-            Container(
-              height: 70,
-              padding: const EdgeInsets.all(15),
-              decoration: const BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              child: const Row(
-                children: [
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Oops!",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          'E-mail atau password salah',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.white,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+      const SnackBar(
+        content: CustomSnackBarContent(
+          message: 'E-mail atau password salah',
         ),
         dismissDirection: DismissDirection.up,
         behavior: SnackBarBehavior.floating,

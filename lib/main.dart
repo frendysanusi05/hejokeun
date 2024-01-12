@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/signup_oauth_screen.dart';
 import 'package:hejokeun/screens/home_screen.dart';
 import 'package:hejokeun/screens/signup_successful_screen.dart';
 import 'firebase_options.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         SignUpScreen.id: (context) => const SignUpScreen(),
+        SignUpOauthScreen.id: (context) => const SignUpOauthScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
         SignUpSuccessfullScreen.id: (context) =>
             const SignUpSuccessfullScreen(),
