@@ -344,3 +344,55 @@ class AppPhoneFormField extends StatelessWidget {
     );
   }
 }
+
+class CustomSnackBarContent extends StatelessWidget {
+  const CustomSnackBarContent({
+    super.key,
+    required this.message,
+  });
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: 70,
+          padding: const EdgeInsets.all(15),
+          decoration: const BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(width: 20),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Oops!",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      message,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
