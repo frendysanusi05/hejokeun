@@ -21,12 +21,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late final TextEditingController emailController;
   late final TextEditingController fullnameController;
   late final TextEditingController nicknameController;
+  late final TextEditingController phoneController;
+  late final TextEditingController homeUniqueCodeController;
   late final TextEditingController passwordController;
   late final TextEditingController confirmPasswordController;
+  late final TextEditingController isTermsCheckedController;
 
   final ValueNotifier<bool> fieldValidNotifier = ValueNotifier(false);
   final ValueNotifier<bool> passwordNotifier = ValueNotifier(true);
   final ValueNotifier<bool> confirmPasswordNotifier = ValueNotifier(true);
+  final ValueNotifier<bool> isTermsCheckedNotifier = ValueNotifier<bool>(false);
 
   void initializeControllers() {
     emailController = TextEditingController()..addListener(controllerListeners);
@@ -34,9 +38,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ..addListener(controllerListeners);
     nicknameController = TextEditingController()
       ..addListener(controllerListeners);
+    phoneController = TextEditingController()..addListener(controllerListeners);
+    homeUniqueCodeController = TextEditingController()
+      ..addListener(controllerListeners);
     passwordController = TextEditingController()
       ..addListener(controllerListeners);
     confirmPasswordController = TextEditingController()
+      ..addListener(controllerListeners);
+    isTermsCheckedController = TextEditingController()
       ..addListener(controllerListeners);
   }
 
@@ -44,26 +53,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
     emailController.dispose();
     fullnameController.dispose();
     nicknameController.dispose();
+    phoneController.dispose();
+    homeUniqueCodeController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+    isTermsCheckedController.dispose();
   }
 
   void controllerListeners() {
     final email = emailController.text;
     final fullname = fullnameController.text;
     final nickname = nicknameController.text;
+    final phone = phoneController.text;
+    final homeUniqueCode = homeUniqueCodeController.text;
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
 
-    if (email.isEmpty &&
-        fullname.isEmpty &&
-        nickname.isEmpty &&
-        password.isEmpty &&
-        confirmPassword.isEmpty) {
-      return;
-    }
+    bool fieldIsEmpty = email.isEmpty ||
+        fullname.isEmpty ||
+        nickname.isEmpty ||
+        phone.isEmpty ||
+        homeUniqueCode.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty;
 
-    if (AppRegex.emailRegex.hasMatch(email) && password == confirmPassword) {
+    if (AppRegex.emailRegex.hasMatch(email) &&
+        password == confirmPassword &&
+        !fieldIsEmpty &&
+        isTermsCheckedNotifier.value) {
       fieldValidNotifier.value = true;
     } else {
       fieldValidNotifier.value = false;
@@ -80,7 +97,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
       addUserDetails(
         fullnameController.text,
         nicknameController.text,
+        phoneController.text,
+        homeUniqueCodeController.text,
+        emailController.text,
+        passwordController.text,
       );
+
+      print('User created successfully!');
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -91,12 +114,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Future<void> addUserDetails(
     String fullname,
     String nickname,
+    String phone,
+    String homeUniqueCode,
+    String email,
+    String password,
   ) async {
     try {
       final users = FirebaseFirestore.instance.collection('users');
-      users.add({
+      final docRef = users.doc();
+      docRef.set({
+        'id': docRef.id,
         'fullname': fullname,
         'nickname': nickname,
+        'phone': '+62$phone',
+        'home_unique_code': homeUniqueCode,
+        'email': email,
+        'password': password,
       });
     } on FirebaseException catch (e) {
       setState(() {
@@ -158,6 +191,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     required: true,
                     textInputAction: TextInputAction.next,
                     textInputType: TextInputType.name,
+                    onChanged: (_) => _formKey.currentState?.validate(),
+                  ),
+                  const SizedBox(height: 16),
+                  AppPhoneFormField(
+                    controller: phoneController,
+                    fieldText: "Nomor Telepon",
+                    labelText: "Masukkan nomor telepon Anda",
+                    required: true,
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.phone,
+                    onChanged: (_) => _formKey.currentState?.validate(),
+                  ),
+                  const SizedBox(height: 16),
+                  AppTextFormField(
+                    controller: homeUniqueCodeController,
+                    fieldText: "Kode Unik Rumah",
+                    labelText: "Masukkan kode unik rumah Anda",
+                    required: true,
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.text,
                     onChanged: (_) => _formKey.currentState?.validate(),
                   ),
                   const SizedBox(height: 16),
@@ -274,6 +327,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             const SizedBox(height: 36),
+            Row(
+              children: [
+                Checkbox(
+                  value: isTermsCheckedNotifier.value,
+                  onChanged: (value) {
+                    setState(() {
+                      isTermsCheckedNotifier.value = value!;
+                      isTermsCheckedController.text = value.toString();
+                    });
+                  },
+                ),
+                SizedBox(
+                  width: 313,
+                  child: RichText(
+                    text: const TextSpan(
+                      style: TextStyle(
+                        color: kAG2,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Saya telah membaca dan menyetujui ',
+                        ),
+                        TextSpan(
+                          text: 'Syarat dan Ketentuan',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' yang berlaku',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
             ValueListenableBuilder(
               valueListenable: fieldValidNotifier,
               builder: (_, isValid, __) {
