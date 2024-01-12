@@ -2,20 +2,26 @@ import 'package:hejokeun/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class TopScreenImage extends StatelessWidget {
-  const TopScreenImage({super.key, required this.screenImageName});
+  const TopScreenImage({
+    super.key,
+    required this.screenImageName,
+    this.width,
+    this.height,
+  });
+
   final String screenImageName;
+  final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Align(
-        alignment: Alignment.center,
-        child: Image.asset(
-          'assets/images/$screenImageName',
-          width: 165.38,
-          height: 200,
-          fit: BoxFit.contain,
-        ),
+    return Align(
+      alignment: Alignment.center,
+      child: Image.asset(
+        'assets/images/$screenImageName',
+        width: width,
+        height: height,
+        fit: BoxFit.contain,
       ),
     );
   }

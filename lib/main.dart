@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/signup_successful_screen.dart';
 import 'firebase_options.dart';
 
 import 'package:hejokeun/screens/signup_screen.dart';
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         SignUpScreen.id: (context) => const SignUpScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
+        SignUpSuccessfullScreen.id: (context) =>
+            const SignUpSuccessfullScreen(),
       },
     );
   }

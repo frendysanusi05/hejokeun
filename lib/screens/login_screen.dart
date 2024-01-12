@@ -56,8 +56,6 @@ class _LoginScreenState extends State<LoginScreen> {
         email: emailController.text,
         password: passwordController.text,
       );
-
-      print('User signed in!');
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/signup_successful_screen.dart';
 import 'package:hejokeun/utils/app_regex.dart';
 import 'package:hejokeun/utils/constants.dart';
 
@@ -104,8 +105,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         emailController.text,
         passwordController.text,
       );
-
-      print('User created successfully!');
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -249,6 +248,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         textInputType: TextInputType.visiblePassword,
                         obscureText: passwordObscure,
                         onChanged: (_) => _formKey.currentState?.validate(),
+                        validator: (value) {
+                          return value!.isEmpty
+                              ? null
+                              : value.length >= 6
+                                  ? null
+                                  : "Password minimal 6 karakter";
+                        },
                         suffixIcon: Focus(
                           /// If false,
                           ///
@@ -328,14 +334,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 36),
             Row(
               children: [
-                Checkbox(
-                  value: isTermsCheckedNotifier.value,
-                  onChanged: (value) {
-                    setState(() {
-                      isTermsCheckedNotifier.value = value!;
-                      isTermsCheckedController.text = value.toString();
-                    });
-                  },
+                Transform.scale(
+                  scale: 1.2,
+                  child: Checkbox(
+                    activeColor: kAG1,
+                    value: isTermsCheckedNotifier.value,
+                    onChanged: (value) {
+                      setState(() {
+                        isTermsCheckedNotifier.value = value!;
+                        isTermsCheckedController.text = value.toString();
+                      });
+                    },
+                  ),
                 ),
                 SizedBox(
                   width: 313,
@@ -369,10 +379,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               builder: (_, isValid, __) {
                 return CustomButton(
                   buttonText: 'Sign Up',
-                  buttonColor: kAG0,
+                  buttonColor: kAG1,
                   textColor: Colors.white,
                   isDisabled: !isValid,
-                  onPressed: createUserWithEmailAndPassword,
+                  onPressed: () {
+                    createUserWithEmailAndPassword();
+                    Navigator.pushNamed(context, SignUpSuccessfullScreen.id);
+                  },
                 );
               },
             )
