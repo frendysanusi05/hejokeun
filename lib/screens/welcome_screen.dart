@@ -69,8 +69,9 @@ class WelcomeScreen extends StatelessWidget {
                       child: CustomButton(
                         buttonText: 'Continue with Facebook',
                         isOutlined: true,
-                        onPressed: () {
-                          Navigator.pop(context);
+                        onPressed: () async {
+                          await Auth().signInWithFacebook();
+                          Navigator.pushNamed(context, SignUpOauthScreen.id);
                         },
                       ),
                     ),
