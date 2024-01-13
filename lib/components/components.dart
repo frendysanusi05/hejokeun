@@ -35,9 +35,8 @@ class ScreenTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(
+      style: kH5.copyWith(
         color: kDarkBrown,
-        fontSize: kH5,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -88,15 +87,13 @@ class CustomButton extends StatelessWidget {
               child: isDisabled
                   ? Text(
                       buttonText,
-                      style: TextStyle(
-                        fontSize: kBS3,
+                      style: kBS3.copyWith(
                         color: kDisabledBtn.withOpacity(0.38),
                       ),
                     )
                   : Text(
                       buttonText,
-                      style: TextStyle(
-                        fontSize: kBS3,
+                      style: kBS3.copyWith(
                         color: textColor ?? kAG1,
                       ),
                     ),
@@ -149,16 +146,14 @@ class AppTextFormField extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: fieldText,
-              style: const TextStyle(
+              style: kBS3.copyWith(
                 color: kAG0,
-                fontSize: kBS3,
               ),
               children: [
                 TextSpan(
                   text: required == true ? ' *' : '',
-                  style: const TextStyle(
+                  style: kBR3.copyWith(
                     color: Colors.red,
-                    fontSize: kBR3,
                   ),
                 ),
               ],
@@ -177,9 +172,8 @@ class AppTextFormField extends StatelessWidget {
             decoration: InputDecoration(
               suffixIcon: suffixIcon,
               hintText: labelText,
-              labelStyle: const TextStyle(
+              labelStyle: kBR3.copyWith(
                 color: kLabel,
-                fontSize: kBR3,
               ),
               floatingLabelBehavior: FloatingLabelBehavior.never,
               border: OutlineInputBorder(
@@ -200,9 +194,8 @@ class AppTextFormField extends StatelessWidget {
                 ),
               ),
             ),
-            style: const TextStyle(
+            style: kBR3.copyWith(
               color: kAG1,
-              fontSize: kBR3,
             ),
           ),
         ],
@@ -252,16 +245,14 @@ class AppPhoneFormField extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: fieldText,
-              style: const TextStyle(
+              style: kBS3.copyWith(
                 color: kAG0,
-                fontSize: kBS3,
               ),
               children: [
                 TextSpan(
                   text: required == true ? ' *' : '',
-                  style: const TextStyle(
+                  style: kBR3.copyWith(
                     color: Colors.red,
-                    fontSize: kBR3,
                   ),
                 ),
               ],
@@ -308,9 +299,8 @@ class AppPhoneFormField extends StatelessWidget {
                   decoration: InputDecoration(
                     suffixIcon: suffixIcon,
                     hintText: labelText,
-                    labelStyle: const TextStyle(
+                    labelStyle: kBR3.copyWith(
                       color: kLabel,
-                      fontSize: kBR3,
                     ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     border: OutlineInputBorder(
@@ -331,9 +321,8 @@ class AppPhoneFormField extends StatelessWidget {
                       ),
                     ),
                   ),
-                  style: const TextStyle(
+                  style: kBR3.copyWith(
                     color: kAG1,
-                    fontSize: kBR3,
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /* Color */
 // Basic Color
@@ -23,25 +24,76 @@ const Color kLG3 = Color(0xFFD3D9C0);
 const Color kLG4 = Color(0xFFE8ECDC);
 const Color kLG5 = Color(0xFFFDFFF8);
 
+/* Custom Font */
+TextStyle kBodyRegular = GoogleFonts.openSans().copyWith(
+  fontWeight: regular,
+);
+TextStyle kBodySemiBold = GoogleFonts.openSans().copyWith(
+  fontWeight: semiBold,
+);
+TextStyle kHeading = GoogleFonts.manrope().copyWith(
+  fontWeight: bold,
+);
+
+/* Font Weight */
+const regular = FontWeight.w400;
+const semiBold = FontWeight.w600;
+const bold = FontWeight.w700;
+
 /* Font Size */
 // Heading
-const double kH1 = 64;
-const double kH2 = 48;
-const double kH3 = 32;
-const double kH4 = 24;
-const double kH5 = 20;
-const double kH6 = 16;
+TextStyle kH1 = kHeading.copyWith(
+  fontSize: 64,
+);
+TextStyle kH2 = kHeading.copyWith(
+  fontSize: 48,
+);
+TextStyle kH3 = kHeading.copyWith(
+  fontSize: 32,
+);
+TextStyle kH4 = kHeading.copyWith(
+  fontSize: 24,
+);
+TextStyle kH5 = kHeading.copyWith(
+  fontSize: 20,
+);
+TextStyle kH6 = kHeading.copyWith(
+  fontSize: 16,
+);
+TextStyle kH7 = kHeading.copyWith(
+  fontSize: 14,
+);
 
 // Body-SemiBold
-const double kBS1 = 20;
-const double kBS2 = 16;
-const double kBS3 = 14;
-const double kBS4 = 12;
-const double kBS5 = 10;
+TextStyle kBS1 = kBodySemiBold.copyWith(
+  fontSize: 20,
+);
+TextStyle kBS2 = kBodySemiBold.copyWith(
+  fontSize: 16,
+);
+TextStyle kBS3 = kBodySemiBold.copyWith(
+  fontSize: 14,
+);
+TextStyle kBS4 = kBodySemiBold.copyWith(
+  fontSize: 12,
+);
+TextStyle kBS5 = kBodySemiBold.copyWith(
+  fontSize: 10,
+);
 
 // Body-Regular
-const double kBR1 = 20;
-const double kBR2 = 16;
-const double kBR3 = 14;
-const double kBR4 = 12;
-const double kBR5 = 10;
+TextStyle kBR1 = kBodyRegular.copyWith(
+  fontSize: 20,
+);
+TextStyle kBR2 = kBodyRegular.copyWith(
+  fontSize: 16,
+);
+TextStyle kBR3 = kBodyRegular.copyWith(
+  fontSize: 14,
+);
+TextStyle kBR4 = kBodyRegular.copyWith(
+  fontSize: 12,
+);
+TextStyle kBR5 = kBodyRegular.copyWith(
+  fontSize: 10,
+);

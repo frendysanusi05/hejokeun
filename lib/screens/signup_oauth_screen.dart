@@ -137,11 +137,10 @@ class _SignUpOauthScreenState extends State<SignUpOauthScreen> {
         child: ListView(
           children: [
             const ScreenTitle(title: 'Selamat datang di Hejokeun!'),
-            const Text(
+            Text(
               'Masukkan e-mail dan password yang ingin Anda gunakan',
-              style: TextStyle(
+              style: kBR4.copyWith(
                 color: kAG3,
-                fontSize: kBR4,
               ),
             ),
             const SizedBox(height: 24),
