@@ -7,7 +7,7 @@ import 'package:hejokeun/utils/constants.dart';
 
 class SignUpOauthScreen extends StatefulWidget {
   const SignUpOauthScreen({super.key});
-  static String id = 'signup_screen';
+  static String id = 'signup_oauth_screen';
 
   @override
   State<SignUpOauthScreen> createState() => _SignUpOauthScreenState();

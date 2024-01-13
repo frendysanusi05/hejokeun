@@ -76,12 +76,20 @@ class Auth {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
 
-      if (result.status == LoginStatus.success) {
-        final AccessToken accessToken = result.accessToken!;
+      switch (result.status) {
+        case LoginStatus.success:
+          final AuthCredential facebookCredential =
+              FacebookAuthProvider.credential(result.accessToken!.token);
+          final userCredential =
+              await _firebaseAuth.signInWithCredential(facebookCredential);
 
-        final userData = await FacebookAuth.i.getUserData();
-        print(userData);
-        return userData;
+          return userCredential;
+        case LoginStatus.cancelled:
+          return 'Cancelled';
+        case LoginStatus.failed:
+          return 'Error';
+        default:
+          return null;
       }
     } catch (e) {
       return e;
