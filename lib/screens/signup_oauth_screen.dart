@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hejokeun/components/components.dart';
 import 'package:flutter/material.dart';
-import 'package:hejokeun/screens/signup_successful_screen.dart';
+import 'package:hejokeun/components/components.dart';
 import 'package:hejokeun/utils/constants.dart';
+
+import 'package:hejokeun/screens/home_screen.dart';
 
 class SignUpOauthScreen extends StatefulWidget {
   const SignUpOauthScreen({super.key});
@@ -69,6 +70,7 @@ class _SignUpOauthScreenState extends State<SignUpOauthScreen> {
   Future<void> createUserWithEmailAndPassword() async {
     try {
       addUserDetails(
+        FirebaseAuth.instance.currentUser!.uid,
         fullnameController.text,
         nicknameController.text,
         phoneController.text,
@@ -85,6 +87,7 @@ class _SignUpOauthScreenState extends State<SignUpOauthScreen> {
   }
 
   Future<void> addUserDetails(
+    String uid,
     String fullname,
     String nickname,
     String phone,
@@ -93,9 +96,9 @@ class _SignUpOauthScreenState extends State<SignUpOauthScreen> {
   ) async {
     try {
       final users = FirebaseFirestore.instance.collection('users');
-      final docRef = users.doc();
+      final docRef = users.doc(uid);
       docRef.set({
-        'id': docRef.id,
+        'id': uid,
         'fullname': fullname,
         'nickname': nickname,
         'phone': '+62$phone',
@@ -241,7 +244,7 @@ class _SignUpOauthScreenState extends State<SignUpOauthScreen> {
                   isDisabled: !isValid,
                   onPressed: () {
                     createUserWithEmailAndPassword();
-                    Navigator.pushNamed(context, SignUpSuccessfullScreen.id);
+                    Navigator.pushNamed(context, HomeScreen.id);
                   },
                 );
               },

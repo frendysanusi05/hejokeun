@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/components/components.dart';
+import 'package:hejokeun/screens/home_screen.dart';
 import 'package:hejokeun/screens/login_screen.dart';
 import 'package:hejokeun/screens/signup_oauth_screen.dart';
 import 'package:hejokeun/screens/signup_screen.dart';
@@ -20,26 +21,26 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(
-                height: 150,
+                height: 169,
               ),
               const TopScreenImage(
                 screenImageName: 'logo.png',
-                width: 165.38,
-                height: 200,
+                width: 306,
+                height: 294,
               ),
-              const SizedBox(height: 70),
+              const SizedBox(height: 105),
               Padding(
                 padding: const EdgeInsets.only(right: 15, left: 15, bottom: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const ScreenTitle(title: 'Selamat datang di Hejokeun!'),
-                    const Text(
-                      'Aplikasi Eco green ...',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: kDarkBrown, fontSize: kBR4),
-                    ),
-                    const SizedBox(height: 103),
+                    // const ScreenTitle(title: 'Selamat datang di Hejokeun!'),
+                    // const Text(
+                    //   'Aplikasi Eco green ...',
+                    //   textAlign: TextAlign.center,
+                    //   style: TextStyle(color: kDarkBrown, fontSize: kBR4),
+                    // ),
+                    // const SizedBox(height: 103),
                     Hero(
                       tag: 'signup_btn',
                       child: CustomButton(
@@ -59,7 +60,14 @@ class WelcomeScreen extends StatelessWidget {
                         isOutlined: true,
                         onPressed: () async {
                           await Auth().signInWithGoogle();
-                          Navigator.pushNamed(context, SignUpOauthScreen.id);
+
+                          bool userExist = await Auth().checkUserExist();
+
+                          if (userExist) {
+                            Navigator.pushNamed(context, HomeScreen.id);
+                          } else {
+                            Navigator.pushNamed(context, SignUpOauthScreen.id);
+                          }
                         },
                       ),
                     ),
@@ -71,7 +79,13 @@ class WelcomeScreen extends StatelessWidget {
                         isOutlined: true,
                         onPressed: () async {
                           await Auth().signInWithFacebook();
-                          Navigator.pushNamed(context, SignUpOauthScreen.id);
+                          bool userExist = await Auth().checkUserExist();
+
+                          if (userExist) {
+                            Navigator.pushNamed(context, HomeScreen.id);
+                          } else {
+                            Navigator.pushNamed(context, SignUpOauthScreen.id);
+                          }
                         },
                       ),
                     ),
@@ -79,7 +93,7 @@ class WelcomeScreen extends StatelessWidget {
                     Hero(
                       tag: 'login_btn',
                       child: CustomButton(
-                        buttonText: 'Log In',
+                        buttonText: 'Log In with E-mail',
                         onPressed: () {
                           Navigator.pushNamed(context, LoginScreen.id);
                         },
