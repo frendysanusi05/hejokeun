@@ -51,7 +51,7 @@ class CustomButton extends StatelessWidget {
     this.buttonColor,
     this.textColor,
     this.isOutlined = false,
-    this.width = 326,
+    this.width,
     this.height = 40,
     this.isDisabled = false,
   });
@@ -59,7 +59,7 @@ class CustomButton extends StatelessWidget {
   final String buttonText;
   final Function onPressed;
   final bool isOutlined;
-  final double width;
+  final double? width;
   final double height;
   final Color? buttonColor;
   final Color? textColor;
@@ -74,7 +74,7 @@ class CustomButton extends StatelessWidget {
         child: Material(
           borderRadius: BorderRadius.circular(30),
           child: Container(
-            width: width,
+            width: width ?? 326,
             height: height,
             decoration: BoxDecoration(
               color: isDisabled
@@ -382,6 +382,138 @@ class CustomSnackBarContent extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class PaymentMethod extends StatelessWidget {
+  const PaymentMethod({
+    super.key,
+    required this.value,
+    required this.type,
+    required this.handleRadio,
+    required this.text,
+    required this.asset,
+    this.showLeftBorder = true,
+    this.showRightBorder = true,
+    this.showTopBorder = true,
+    this.showBottomBorder = true,
+    this.showBorderRadius = false,
+    this.controller,
+  });
+
+  final int value;
+  final int type;
+  final void Function(int?)? handleRadio;
+  final String text;
+  final String asset;
+  final bool showLeftBorder;
+  final bool showRightBorder;
+  final bool showTopBorder;
+  final bool showBottomBorder;
+  final bool showBorderRadius;
+  final TextEditingController? controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: type == value ? 169 : 64,
+      decoration: BoxDecoration(
+        border: Border(
+          left:
+              showLeftBorder ? const BorderSide(color: kAG2) : BorderSide.none,
+          right:
+              showRightBorder ? const BorderSide(color: kAG2) : BorderSide.none,
+          top: showTopBorder ? const BorderSide(color: kAG2) : BorderSide.none,
+          bottom: showBottomBorder
+              ? const BorderSide(color: kAG2)
+              : BorderSide.none,
+        ),
+        borderRadius: showBorderRadius
+            ? const BorderRadius.only(
+                topLeft: Radius.circular(4),
+                topRight: Radius.circular(4),
+              )
+            : null,
+        color: Colors.transparent,
+      ),
+      child: Center(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Radio(
+                  value: value,
+                  groupValue: type,
+                  onChanged: handleRadio,
+                  activeColor: kAG1,
+                ),
+                Image.asset(
+                  asset,
+                  width: 40,
+                  height: 50,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  text,
+                  style: kBS3.copyWith(
+                    color: kDarkBrown,
+                  ),
+                ),
+              ],
+            ),
+            type == value
+                ? Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 4),
+                        Text(
+                          'Nomor Telepon',
+                          style: kBR3.copyWith(color: kAG0),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: controller,
+                          decoration: InputDecoration(
+                            hintText: 'Masukkan nomor $text Anda',
+                            labelStyle: kBR3.copyWith(
+                              color: kLabel,
+                            ),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                color: kAG2,
+                                width: 1.0,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                color: kAG1,
+                                width: 1.2,
+                              ),
+                            ),
+                          ),
+                          style: kBR3.copyWith(
+                            color: const Color(0xFF3C3C43).withOpacity(0.6),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+          ],
+        ),
+      ),
     );
   }
 }
