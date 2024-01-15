@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
+import 'package:hejokeun/screens/penukaran_poin_successful_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -45,7 +46,7 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
 
     bool fieldIsEmpty = coin.isEmpty || payment.isEmpty;
 
-    if (!fieldIsEmpty) {
+    if (!fieldIsEmpty && int.parse(coin) <= points) {
       fieldValidNotifier.value = true;
     } else {
       fieldValidNotifier.value = false;
@@ -66,6 +67,12 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
     } catch (e) {
       return null;
     }
+  }
+
+  void updatePoints(int newPoints) {
+    usersReference.update({
+      'point': newPoints,
+    });
   }
 
   @override
@@ -92,7 +99,7 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color(0xFFA9B388),
+            kLG1,
             Color(0xFF606060),
           ],
         ),
@@ -180,6 +187,7 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
                             const SizedBox(height: 8),
                             TextFormField(
                               controller: coinController,
+                              keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 hintText: 'Masukkan jumlah koin',
                                 labelStyle: kBR3.copyWith(
@@ -267,7 +275,97 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
                                         width: double.infinity,
                                         textColor: Colors.white,
                                         isDisabled: !isValid,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            shape: const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(12),
+                                              topRight: Radius.circular(12),
+                                            )),
+                                            builder: (BuildContext context) {
+                                              return Stack(
+                                                clipBehavior: Clip.none,
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            16.0),
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'Apakah Anda yakin?',
+                                                          style: kBS1.copyWith(
+                                                              color:
+                                                                  kDarkBrown),
+                                                        ),
+                                                        const SizedBox(
+                                                            height: 16.0),
+                                                        CustomButton(
+                                                          buttonText:
+                                                              'Ya, saya yakin',
+                                                          buttonColor: kAG0,
+                                                          textColor:
+                                                              Colors.white,
+                                                          isDisabled: !isValid,
+                                                          width: MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .width,
+                                                          onPressed: () {
+                                                            updatePoints(points -
+                                                                int.parse(
+                                                                    coinController
+                                                                        .text));
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                PenukaranPoinSuccessfulScreen
+                                                                    .id);
+                                                          },
+                                                        ),
+                                                        const SizedBox(
+                                                            height: 16.0),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    top: -50,
+                                                    right: 16,
+                                                    child: Container(
+                                                      width: 32,
+                                                      height: 32,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: Colors.white,
+                                                      ),
+                                                      child: IconButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        icon: const Icon(
+                                                          Icons.close_rounded,
+                                                        ),
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
                                       );
                               },
                             )

@@ -163,6 +163,7 @@ class AppTextFormField extends StatelessWidget {
           TextFormField(
             controller: controller,
             focusNode: focusNode,
+            keyboardType: textInputType,
             onChanged: onChanged,
             autofocus: autofocus ?? false,
             validator: validator,
@@ -290,6 +291,7 @@ class AppPhoneFormField extends StatelessWidget {
                 child: TextFormField(
                   controller: controller,
                   focusNode: focusNode,
+                  keyboardType: textInputType,
                   onChanged: onChanged,
                   autofocus: autofocus ?? false,
                   validator: validator,
@@ -479,6 +481,7 @@ class PaymentMethod extends StatelessWidget {
                         const SizedBox(height: 8),
                         TextFormField(
                           controller: controller,
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             hintText: 'Masukkan nomor $text Anda',
                             labelStyle: kBR3.copyWith(
