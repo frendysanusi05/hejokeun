@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import 'package:hejokeun/utils/calendar_utils.dart';
+import 'package:hejokeun/components/components.dart';
+import 'package:hejokeun/utils/schedule_events.dart';
 import 'package:hejokeun/utils/constants.dart';
 
 class PengambilanSampahScreen extends StatefulWidget {
@@ -85,7 +87,9 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 60.0),
           TableCalendar<Event>(
             headerStyle: const HeaderStyle(
               titleCentered: true,
@@ -107,16 +111,28 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(4)),
                 color: kAG0,
               ),
-              selectedTextStyle: _focusedDay.weekday == DateTime.sunday
+              selectedTextStyle: _selectedDay!.weekday == DateTime.sunday
                   ? kBS5.copyWith(color: const Color(0xFFEE0004))
-                  : kBS5.copyWith(color: kDarkBrown),
-              selectedDecoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-                color: kAG0,
-              ),
+                  : _selectedDay!.weekday == DateTime.now().weekday
+                      ? kBS5.copyWith(color: Colors.white)
+                      : kBS5.copyWith(color: kDarkBrown),
+              selectedDecoration:
+                  _selectedDay!.weekday != DateTime.now().weekday
+                      ? BoxDecoration(
+                          border: Border.all(
+                              color: const Color(0xFF3C3C43).withOpacity(0.3)),
+                          // borderRadius: BorderRadius.all(Radius.circular(4)),
+                          color: Colors.transparent,
+                        )
+                      : const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          color: kAG0,
+                        ),
               defaultTextStyle: kBS5.copyWith(color: kDarkBrown),
               weekendTextStyle: kBS5.copyWith(color: const Color(0xFFEE0004)),
               outsideDaysVisible: false,
+              markerDecoration:
+                  const BoxDecoration(color: kCamel, shape: BoxShape.circle),
             ),
             onDaySelected: _onDaySelected,
             onRangeSelected: _onRangeSelected,
@@ -131,33 +147,72 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
               _focusedDay = focusedDay;
             },
           ),
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 16.0),
+          Divider(
+            height: 0,
+            color: Colors.grey.shade300,
+          ),
+          const SizedBox(height: 16.0),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 18.0,
+            ),
+            child: Text(
+              DateFormat('MMM d, y').format(_selectedDay!),
+              style: kBS5.copyWith(color: kAG1),
+            ),
+          ),
           Expanded(
             child: ValueListenableBuilder<List<Event>>(
               valueListenable: _selectedEvents,
               builder: (context, value, _) {
-                return ListView.builder(
-                  itemCount: value.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 4.0,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: ListTile(
-                        onTap: () => print('${value[index]}'),
-                        title: Text('${value[index]}'),
-                      ),
-                    );
-                  },
-                );
+                return value.isEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 154, vertical: 124),
+                        child: Column(
+                          children: [
+                            Icon(
+                              const IconData(0xe5d8,
+                                  fontFamily: 'MaterialIcons'),
+                              size: 24,
+                              color: const Color(0xFF3C3C43).withOpacity(0.6),
+                            ),
+                            const SizedBox(height: 12.0),
+                            Text(
+                              'Belum ada jadwal',
+                              style: kBS4.copyWith(
+                                  color:
+                                      const Color(0xFF3C3C43).withOpacity(0.6)),
+                            ),
+                          ],
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: value.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: Text(value[index].time),
+                            title: Text(value[index].title),
+                            subtitle: Text(value[index].description),
+                            leadingAndTrailingTextStyle:
+                                kBS4.copyWith(color: kDarkBrown),
+                            titleTextStyle: kBR4.copyWith(color: kDarkBrown),
+                            subtitleTextStyle: kBR5.copyWith(color: kBrown),
+                          );
+                        },
+                      );
               },
             ),
           ),
+          Center(
+            child: CustomButton(
+                buttonText: 'Request Pengambilan di Luar Jadwal',
+                isOutlined: true,
+                textColor: kAG1,
+                onPressed: () {}),
+          ),
+          const SizedBox(height: 30.0),
         ],
       ),
     );

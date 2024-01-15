@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: PengambilanSampahScreen.id,
+      // initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         SignUpScreen.id: (context) => const SignUpScreen(),
