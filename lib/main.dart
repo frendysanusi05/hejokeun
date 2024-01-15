@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/penukaran_poin_screen.dart';
+import 'package:hejokeun/screens/penukaran_poin_successful_screen.dart';
 import 'firebase_options.dart';
 
 import 'package:hejokeun/screens/signup_oauth_screen.dart';
@@ -29,7 +31,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: PenukaranPoinScreen.id,
+      // initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         SignUpScreen.id: (context) => const SignUpScreen(),
@@ -37,6 +40,9 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => const LoginScreen(),
         MainScreen.id: (context) => const MainScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
+        PenukaranPoinScreen.id: (context) => const PenukaranPoinScreen(),
+        PenukaranPoinSuccessfulScreen.id: (context) =>
+            const PenukaranPoinSuccessfulScreen(),
       },
     );
   }

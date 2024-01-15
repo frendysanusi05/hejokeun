@@ -110,11 +110,10 @@ class _LoginScreenState extends State<LoginScreen> {
         child: ListView(
           children: [
             const ScreenTitle(title: 'Selamat datang kembali!'),
-            const Text(
+            Text(
               'Masukkan e-mail dan password akun Anda',
-              style: TextStyle(
+              style: kBR4.copyWith(
                 color: kAG3,
-                fontSize: kBR4,
               ),
             ),
             const SizedBox(height: 24),

@@ -10,11 +10,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Stack(
+        Stack(
           alignment: Alignment.topCenter,
           clipBehavior: Clip.none,
           children: [
-            TopScreenImage(
+            const TopScreenImage(
               screenImageName: 'main_backdrop.png',
             ),
             Positioned(
@@ -25,41 +25,40 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Hai, Hejoers!',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: kH5,
-                            fontWeight: FontWeight.w600)),
-                    SizedBox(height: 8),
+                        style: kH5.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        )),
+                    const SizedBox(height: 8),
                     Card(
                       surfaceTintColor: Colors.white,
                       child: SizedBox(
                           width: 300,
                           height: 60,
                           child: Padding(
-                            padding: EdgeInsets.only(left: 16, right: 16),
+                            padding: const EdgeInsets.only(left: 16, right: 16),
                             child: Flex(
                               direction: Axis.horizontal,
                               children: [
                                 Flex(
                                   direction: Axis.horizontal,
                                   children: [
-                                    TopScreenImage(
+                                    const TopScreenImage(
                                       screenImageName: "psychiatry.png",
                                       width: 30,
                                       height: 30,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Text("Jumlah Poin",
-                                        style: TextStyle(
+                                        style: kBS3.copyWith(
                                             color: kAG0,
-                                            fontSize: kBS3,
                                             fontWeight: FontWeight.w500)),
                                   ],
                                 ),
-                                Spacer(),
-                                Text("4000 Poin")
+                                const Spacer(),
+                                const Text("4000 Poin")
                               ],
                             ),
                           )),
@@ -92,11 +91,10 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text("Katalog Penukaran",
+                    Text("Katalog Penukaran",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: kBR4.copyWith(
                           color: kAG1,
-                          fontSize: kBR4,
                         )),
                   ],
                 ),
@@ -118,11 +116,10 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text("Tukar Poin",
+                    Text("Tukar Poin",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: kBR4.copyWith(
                           color: kAG1,
-                          fontSize: kBR4,
                         )),
                   ],
                 ),
@@ -142,11 +139,10 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text("Zero Waste Campaign",
+                    Text("Zero Waste Campaign",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: kBR4.copyWith(
                           color: kAG1,
-                          fontSize: kBR4,
                         )),
                   ],
                 ),
@@ -166,11 +162,10 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text("Statistik Kontribusi",
+                    Text("Statistik Kontribusi",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: kBR4.copyWith(
                           color: kAG1,
-                          fontSize: kBR4,
                         )),
                   ],
                 ),
@@ -190,11 +185,10 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text("About Maggot",
+                    Text("About Maggot",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: kBR4.copyWith(
                           color: kAG1,
-                          fontSize: kBR4,
                         )),
                   ],
                 ),
@@ -214,11 +208,10 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text("Biaya\nLayanan",
+                    Text("Biaya\nLayanan",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: kBR4.copyWith(
                           color: kAG1,
-                          fontSize: kBR4,
                         )),
                   ],
                 ),
