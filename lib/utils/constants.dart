@@ -103,3 +103,5 @@ const IconData accessTime = IconData(0xe03a, fontFamily: 'MaterialIcons');
 const IconData calendarMonthOutline =
     IconData(0xf051f, fontFamily: 'MaterialIcons');
 const IconData error = IconData(0xe237, fontFamily: 'MaterialIcons');
+const IconData sort =
+    IconData(0xe5d2, fontFamily: 'MaterialIcons', matchTextDirection: true);

@@ -26,7 +26,7 @@ Future<void> initializeNotifications() async {
 
   clearNotifications();
 
-  for (QueryDocumentSnapshot document in notificationDocuments!.reversed) {
+  for (QueryDocumentSnapshot document in notificationDocuments!) {
     final timeDiff = DateTime.now()
         .difference((document.data() as Map<String, dynamic>)['time'].toDate());
     int dayDiff = timeDiff.inDays;
