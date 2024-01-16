@@ -97,3 +97,9 @@ TextStyle kBR4 = kBodyRegular.copyWith(
 TextStyle kBR5 = kBodyRegular.copyWith(
   fontSize: 10,
 );
+
+/* Icons */
+const IconData accessTime = IconData(0xe03a, fontFamily: 'MaterialIcons');
+const IconData calendarMonthOutline =
+    IconData(0xf051f, fontFamily: 'MaterialIcons');
+const IconData error = IconData(0xe237, fontFamily: 'MaterialIcons');
