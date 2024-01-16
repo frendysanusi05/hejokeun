@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/pengambilan_sampah/request_pengambilan_sampah_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -113,21 +114,20 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
               ),
               selectedTextStyle: _selectedDay!.weekday == DateTime.sunday
                   ? kBS5.copyWith(color: const Color(0xFFEE0004))
-                  : _selectedDay!.weekday == DateTime.now().weekday
+                  : _selectedDay!.day == DateTime.now().day
                       ? kBS5.copyWith(color: Colors.white)
                       : kBS5.copyWith(color: kDarkBrown),
-              selectedDecoration:
-                  _selectedDay!.weekday != DateTime.now().weekday
-                      ? BoxDecoration(
-                          border: Border.all(
-                              color: const Color(0xFF3C3C43).withOpacity(0.3)),
-                          // borderRadius: BorderRadius.all(Radius.circular(4)),
-                          color: Colors.transparent,
-                        )
-                      : const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          color: kAG0,
-                        ),
+              selectedDecoration: _selectedDay!.day != DateTime.now().day
+                  ? BoxDecoration(
+                      border: Border.all(
+                          color: const Color(0xFF3C3C43).withOpacity(0.3)),
+                      // borderRadius: BorderRadius.all(Radius.circular(4)),
+                      color: Colors.transparent,
+                    )
+                  : const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      color: kAG0,
+                    ),
               defaultTextStyle: kBS5.copyWith(color: kDarkBrown),
               weekendTextStyle: kBS5.copyWith(color: const Color(0xFFEE0004)),
               outsideDaysVisible: false,
@@ -210,7 +210,10 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
                 buttonText: 'Request Pengambilan di Luar Jadwal',
                 isOutlined: true,
                 textColor: kAG1,
-                onPressed: () {}),
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, RequestPengambilanSampahScreen.id);
+                }),
           ),
           const SizedBox(height: 30.0),
         ],

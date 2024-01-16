@@ -15,7 +15,7 @@ class Event {
 }
 
 late LinkedHashMap<DateTime, List<Event>> kEvents;
-
+late Set<Map<DateTime, List<Event>>> _kEventSource;
 late Query scheduleQuery;
 
 late List<QueryDocumentSnapshot>? scheduleDocuments;
@@ -26,6 +26,26 @@ Future<void> initializePickupScheduleData() async {
       .where('user_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
 
   scheduleDocuments = await getScheduleDocuments();
+
+  _kEventSource = {
+    for (QueryDocumentSnapshot document in scheduleDocuments!)
+      {
+        DateTime.utc(
+            getYearFromTimeStamp(
+                (document.data() as Map<String, dynamic>)['time']),
+            getMonthFromTimeStamp(
+                (document.data() as Map<String, dynamic>)['time']),
+            getDayFromTimeStamp(
+                (document.data() as Map<String, dynamic>)['time'])): [
+          Event(
+            'Pengambilan Sampah ${capitalize((document.data() as Map<String, dynamic>)['type'])}',
+            'Staff Hejokeun akan mengambil sampah ${(document.data() as Map<String, dynamic>)['type']} di perumahan Anda',
+            getTimeFromTimestamp(
+                (document.data() as Map<String, dynamic>)['time']),
+          ),
+        ]
+      }
+  };
 
   var eventtMap = <DateTime, List<Event>>{};
   for (var event in _kEventSource) {
@@ -59,29 +79,23 @@ Future<List<QueryDocumentSnapshot>?> getScheduleDocuments() async {
   }
 }
 
-final _kEventSource = {
-  for (QueryDocumentSnapshot document in scheduleDocuments!)
-    {
-      DateTime.utc(
-          getYearFromTimeStamp(
-              (document.data() as Map<String, dynamic>)['time']),
-          getMonthFromTimeStamp(
-              (document.data() as Map<String, dynamic>)['time']),
-          getDayFromTimeStamp(
-              (document.data() as Map<String, dynamic>)['time'])): [
-        Event(
-          'Pengambilan Sampah ${capitalize((document.data() as Map<String, dynamic>)['type'])}',
-          'Staff Hejokeun akan mengambil sampah ${(document.data() as Map<String, dynamic>)['type']} di perumahan Anda',
-          getTimeFromTimestamp(
-              (document.data() as Map<String, dynamic>)['time']),
-        ),
-      ]
-    }
-};
-
 String getTimeFromTimestamp(Timestamp timestamp) {
   DateTime dateTime = timestamp.toDate();
   return '${dateTime.hour}:${dateTime.minute}';
+}
+
+DateTime parseDateAndTime(String date, String time) {
+  List<String> dateParts = date.split('/');
+  List<String> timeParts = time.split(' ')[0].split('.');
+
+  int day = int.parse(dateParts[0]);
+  int month = int.parse(dateParts[1]);
+  int year = int.parse(dateParts[2]);
+
+  int hour = int.parse(timeParts[0]);
+  int minute = int.parse(timeParts[1]);
+
+  return DateTime(year, month, day, hour, minute);
 }
 
 int getYearFromTimeStamp(Timestamp timestamp) {
