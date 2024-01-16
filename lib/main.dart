@@ -1,7 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/notifikasi/empty_notification_screen.dart';
+import 'package:hejokeun/screens/notifikasi/not_empty_notification_screen.dart';
+import 'package:hejokeun/screens/notifikasi/notification_screen.dart';
 import 'package:hejokeun/screens/pengambilan_sampah/pengambilan_sampah_successful_screen.dart';
 import 'package:hejokeun/screens/pengambilan_sampah/request_pengambilan_sampah_screen.dart';
+import 'package:hejokeun/utils/notifications.dart';
 import 'package:hejokeun/utils/schedule_events.dart';
 import 'firebase_options.dart';
 
@@ -21,6 +25,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await initializePickupScheduleData();
+  await initializeNotifications();
   runApp(const MyApp());
 }
 
@@ -53,6 +58,11 @@ class MyApp extends StatelessWidget {
             const RequestPengambilanSampahScreen(),
         PengambilanSampahSuccessfulScreen.id: (context) =>
             const PengambilanSampahSuccessfulScreen(),
+        EmptyNotificationScreen.id: (context) =>
+            const EmptyNotificationScreen(),
+        NotEmptyNotificationScreen.id: (context) =>
+            const NotEmptyNotificationScreen(),
+        NotificationScreen.id: (context) => const NotificationScreen(),
       },
     );
   }
