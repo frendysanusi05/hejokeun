@@ -1,4 +1,6 @@
 import 'dart:collection';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Event {
@@ -12,23 +14,97 @@ class Event {
   String toString() => '$title - $description - $time';
 }
 
-final kEvents = LinkedHashMap<DateTime, List<Event>>(
-  equals: isSameDay,
-  hashCode: getHashCode,
-)..addAll(_kEventSource);
+late LinkedHashMap<DateTime, List<Event>> kEvents;
+
+late Query scheduleQuery;
+
+late List<QueryDocumentSnapshot>? scheduleDocuments;
+
+Future<void> initializePickupScheduleData() async {
+  scheduleQuery = FirebaseFirestore.instance
+      .collection('pickup_schedule')
+      .where('user_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
+
+  scheduleDocuments = await getScheduleDocuments();
+
+  var eventtMap = <DateTime, List<Event>>{};
+  for (var event in _kEventSource) {
+    var key = event.keys.first;
+    var value = event.values.first;
+
+    if (eventtMap.containsKey(key)) {
+      eventtMap[key]!.addAll(value);
+    } else {
+      eventtMap[key] = value;
+    }
+  }
+
+  kEvents = LinkedHashMap<DateTime, List<Event>>(
+    equals: isSameDay,
+    hashCode: getHashCode,
+  )..addAll(eventtMap);
+}
+
+Future<List<QueryDocumentSnapshot>?> getScheduleDocuments() async {
+  try {
+    QuerySnapshot scheduleSnapshot = await scheduleQuery.get();
+    List<QueryDocumentSnapshot> scheduleDocuments = scheduleSnapshot.docs;
+    if (scheduleDocuments.isNotEmpty) {
+      return scheduleDocuments;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    return null;
+  }
+}
 
 final _kEventSource = {
-  DateTime.utc(kToday.year, kToday.month, 14): [
-    const Event(
-        'Pengambilan Sampah Organik',
-        'Staff Hejokeun akan mengambil sampah organik di perumahan Anda',
-        '10:00'),
-    const Event(
-        'Pengambilan Sampah Organik',
-        'Staff Hejokeun akan mengambil sampah organik di perumahan Anda',
-        '11:00'),
-  ]
+  for (QueryDocumentSnapshot document in scheduleDocuments!)
+    {
+      DateTime.utc(
+          getYearFromTimeStamp(
+              (document.data() as Map<String, dynamic>)['time']),
+          getMonthFromTimeStamp(
+              (document.data() as Map<String, dynamic>)['time']),
+          getDayFromTimeStamp(
+              (document.data() as Map<String, dynamic>)['time'])): [
+        Event(
+          'Pengambilan Sampah ${capitalize((document.data() as Map<String, dynamic>)['type'])}',
+          'Staff Hejokeun akan mengambil sampah ${(document.data() as Map<String, dynamic>)['type']} di perumahan Anda',
+          getTimeFromTimestamp(
+              (document.data() as Map<String, dynamic>)['time']),
+        ),
+      ]
+    }
 };
+
+String getTimeFromTimestamp(Timestamp timestamp) {
+  DateTime dateTime = timestamp.toDate();
+  return '${dateTime.hour}:${dateTime.minute}';
+}
+
+int getYearFromTimeStamp(Timestamp timestamp) {
+  DateTime dateTime = timestamp.toDate();
+  return dateTime.year;
+}
+
+int getMonthFromTimeStamp(Timestamp timestamp) {
+  DateTime dateTime = timestamp.toDate();
+  return dateTime.month;
+}
+
+int getDayFromTimeStamp(Timestamp timestamp) {
+  DateTime dateTime = timestamp.toDate();
+  return dateTime.day;
+}
+
+String capitalize(String input) {
+  if (input.isEmpty) {
+    return input;
+  }
+  return input[0].toUpperCase() + input.substring(1);
+}
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;
