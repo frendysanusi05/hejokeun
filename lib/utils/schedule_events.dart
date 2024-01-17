@@ -9,9 +9,6 @@ class Event {
   final String title;
   final String description;
   final String time;
-
-  @override
-  String toString() => '$title - $description - $time';
 }
 
 late LinkedHashMap<DateTime, List<Event>> kEvents;
