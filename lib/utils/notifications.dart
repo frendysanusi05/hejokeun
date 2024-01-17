@@ -62,6 +62,12 @@ Future<List<QueryDocumentSnapshot>?> getNotificationDocuments() async {
     List<QueryDocumentSnapshot> notificationDocuments =
         notificationSnapshot.docs;
     if (notificationDocuments.isNotEmpty) {
+      notificationDocuments.sort((a, b) {
+        Timestamp timestampA = a['time'] as Timestamp;
+        Timestamp timestampB = b['time'] as Timestamp;
+        return timestampB.seconds.compareTo(timestampA.seconds);
+      });
+
       return notificationDocuments;
     } else {
       return null;
