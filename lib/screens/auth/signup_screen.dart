@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/components/components.dart';
+import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
 import 'package:hejokeun/screens/main_screen.dart';
 import 'package:hejokeun/utils/app_regex.dart';
 import 'package:hejokeun/utils/constants.dart';
@@ -349,21 +351,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   width: 313,
                   child: RichText(
-                    text: const TextSpan(
-                      style: TextStyle(
+                    text: TextSpan(
+                      style: const TextStyle(
                         color: kAG2,
                       ),
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: 'Saya telah membaca dan menyetujui ',
                         ),
                         TextSpan(
                           text: 'Syarat dan Ketentuan',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(
+                                  context, TermsAndConditionScreen.id);
+                            },
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: ' yang berlaku',
                         ),
                       ],

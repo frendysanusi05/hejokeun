@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
 import 'package:hejokeun/utils/transactions.dart';
 import 'firebase_options.dart';
@@ -52,12 +53,14 @@ class MyApp extends StatelessWidget {
         ),
         // initialRoute: Routes.membershipOrderSuccessful,
         // routes: Routes.routes,
-        initialRoute: MembershipScreen.id,
+        initialRoute: WelcomeScreen.id,
         routes: {
           WelcomeScreen.id: (context) => const WelcomeScreen(),
           SignUpScreen.id: (context) => const SignUpScreen(),
           SignUpOauthScreen.id: (context) => const SignUpOauthScreen(),
           LoginScreen.id: (context) => const LoginScreen(),
+          TermsAndConditionScreen.id: (context) =>
+              const TermsAndConditionScreen(),
           MainScreen.id: (context) => const MainScreen(),
           HomeScreen.id: (context) => const HomeScreen(),
           PenukaranPoinScreen.id: (context) => const PenukaranPoinScreen(),

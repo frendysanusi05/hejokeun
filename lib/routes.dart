@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
 
 import 'package:hejokeun/screens/home_screen.dart';
 import 'package:hejokeun/screens/maggot/maggot_indonesia_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_order_successful_screen.dart';
+import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
 import 'package:hejokeun/screens/main_screen.dart';
 import 'package:hejokeun/screens/auth/signup_screen.dart';
 import 'package:hejokeun/screens/auth/signup_oauth_screen.dart';
@@ -26,6 +28,7 @@ class Routes {
   static String signup = SignUpScreen.id;
   static String signupOauth = SignUpOauthScreen.id;
   static String login = LoginScreen.id;
+  static String termsAndCondition = TermsAndConditionScreen.id;
   static String main = MainScreen.id;
   static String home = HomeScreen.id;
   static String penukaranPoin = PenukaranPoinScreen.id;
@@ -43,6 +46,7 @@ class Routes {
   static String transactionHistory = TransactionHistoryScreen.id;
   static String aboutMaggot = AboutMaggotScreen.id;
   static String maggotIndonesia = MaggotIndonesiaScreen.id;
+  static String membership = MembershipScreen.id;
   static String membershipOrderSuccessful = MembershipOrderSuccessfulScreen.id;
 
   static final Map<String, WidgetBuilder> routes = {
@@ -50,6 +54,7 @@ class Routes {
     signup: (context) => const SignUpScreen(),
     signupOauth: (context) => const SignUpOauthScreen(),
     login: (context) => const LoginScreen(),
+    termsAndCondition: (context) => const TermsAndConditionScreen(),
     main: (context) => const MainScreen(),
     home: (context) => const HomeScreen(),
     penukaranPoin: (context) => const PenukaranPoinScreen(),
@@ -68,6 +73,7 @@ class Routes {
     transactionHistory: (context) => const TransactionHistoryScreen(),
     aboutMaggot: (context) => const AboutMaggotScreen(),
     maggotIndonesia: (context) => const MaggotIndonesiaScreen(),
+    membership: (context) => const MembershipScreen(),
     membershipOrderSuccessful: (context) =>
         const MembershipOrderSuccessfulScreen(),
   };
