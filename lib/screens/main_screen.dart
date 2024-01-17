@@ -23,7 +23,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(user);
     return Scaffold(
       backgroundColor: Colors.white,
       body: _pages.elementAt(_selectedIndex),
