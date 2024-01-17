@@ -37,9 +37,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // await initializePickupScheduleData();
-  // await initializeNotifications();
-  // await initializeTransactions();
+  await initializePickupScheduleData();
+  await initializeNotifications();
+  await initializeTransactions();
   runApp(const MyApp());
 }
 
@@ -89,6 +89,11 @@ class MyApp extends StatelessWidget {
               const KatalogPenukaranScreen(),
           DetailPengambilanScreen.id: (context) =>
               const DetailPengambilanScreen(),
+          AboutMaggotScreen.id: (context) => const AboutMaggotScreen(),
+          MaggotIndonesiaScreen.id: (context) => const MaggotIndonesiaScreen(),
+          MembershipScreen.id: (context) => const MembershipScreen(),
+          MembershipOrderSuccessfulScreen.id: (context) =>
+              const MembershipOrderSuccessfulScreen(),
         },
       ),
     );
