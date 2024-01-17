@@ -14,10 +14,17 @@ late Query transactionQuery;
 late List<QueryDocumentSnapshot>? transactionDocuments;
 List<Transactions> transactions = [];
 
+List<bool> isSelected = [false, false]; // for filtering
+
 Future<void> initializeTransactions() async {
   transactionQuery = FirebaseFirestore.instance
       .collection('transactions')
       .where('user_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
+
+  if (isSelected[0] != isSelected[1]) {
+    transactionQuery =
+        transactionQuery.where('isGained', isEqualTo: isSelected[0]);
+  }
 
   transactionDocuments = await getTransactionDocuments();
 
@@ -76,6 +83,12 @@ Future<List<QueryDocumentSnapshot>?> getTransactionDocuments() async {
     QuerySnapshot transactionSnapshot = await transactionQuery.get();
     List<QueryDocumentSnapshot> transactionDocuments = transactionSnapshot.docs;
     if (transactionDocuments.isNotEmpty) {
+      transactionDocuments.sort((a, b) {
+        Timestamp timestampA = a['time'] as Timestamp;
+        Timestamp timestampB = b['time'] as Timestamp;
+        return timestampB.seconds.compareTo(timestampA.seconds);
+      });
+
       return transactionDocuments;
     } else {
       return null;
