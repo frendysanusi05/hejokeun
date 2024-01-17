@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
+import 'package:hejokeun/screens/main_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
-
-import 'package:hejokeun/screens/home_screen.dart';
 
 class SignUpOauthScreen extends StatefulWidget {
   const SignUpOauthScreen({super.key});
@@ -243,7 +242,7 @@ class _SignUpOauthScreenState extends State<SignUpOauthScreen> {
                   isDisabled: !isValid,
                   onPressed: () {
                     createUserWithEmailAndPassword();
-                    Navigator.pushNamed(context, HomeScreen.id);
+                    Navigator.pushNamed(context, MainScreen.id);
                   },
                 );
               },

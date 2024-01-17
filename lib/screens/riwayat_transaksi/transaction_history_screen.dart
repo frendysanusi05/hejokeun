@@ -140,6 +140,35 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                               ),
                                             ],
                                           ),
+                                          const SizedBox(height: 8),
+                                          Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: ElevatedButton(
+                                              onPressed: () async {
+                                                setState(() {
+                                                  for (int i = 0;
+                                                      i < isSelected.length;
+                                                      i++) {
+                                                    isSelected[i] = false;
+                                                  }
+                                                });
+                                                await initializeTransactions();
+                                                Navigator.pushReplacementNamed(
+                                                    context,
+                                                    TransactionHistoryScreen
+                                                        .id);
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                shadowColor: Colors.transparent,
+                                              ),
+                                              child: Text(
+                                                'Hapus Filter',
+                                                style: kBR3.copyWith(
+                                                  color: kDarkBrown,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
