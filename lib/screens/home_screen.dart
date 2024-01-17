@@ -78,7 +78,10 @@ class HomeScreen extends StatelessWidget {
                   direction: Axis.vertical,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, 'katalog_penukaran_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kLG4,
                           foregroundColor: kLG5,

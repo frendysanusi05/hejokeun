@@ -1,5 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/provider/cart_provider.dart';
+import 'package:hejokeun/screens/katalog_penukaran/detail_pengambilan_screen.dart';
+import 'package:hejokeun/screens/katalog_penukaran/katalog_penukaran_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:hejokeun/utils/transactions.dart';
 import 'firebase_options.dart';
 import 'package:hejokeun/utils/notifications.dart';
@@ -28,9 +32,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await initializePickupScheduleData();
-  await initializeNotifications();
-  await initializeTransactions();
+  // await initializePickupScheduleData();
+  // await initializeNotifications();
+  // await initializeTransactions();
   runApp(const MyApp());
 }
 
@@ -40,41 +44,48 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hejokeun',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: MaterialApp(
+        title: 'Hejokeun',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        initialRoute: WelcomeScreen.id,
+        routes: {
+          WelcomeScreen.id: (context) => const WelcomeScreen(),
+          SignUpScreen.id: (context) => const SignUpScreen(),
+          SignUpOauthScreen.id: (context) => const SignUpOauthScreen(),
+          LoginScreen.id: (context) => const LoginScreen(),
+          MainScreen.id: (context) => const MainScreen(),
+          HomeScreen.id: (context) => const HomeScreen(),
+          PenukaranPoinScreen.id: (context) => const PenukaranPoinScreen(),
+          PenukaranPoinSuccessfulScreen.id: (context) =>
+              const PenukaranPoinSuccessfulScreen(),
+          PengambilanSampahScreen.id: (context) =>
+              const PengambilanSampahScreen(),
+          RequestPengambilanSampahScreen.id: (context) =>
+              const RequestPengambilanSampahScreen(),
+          PengambilanSampahSuccessfulScreen.id: (context) =>
+              const PengambilanSampahSuccessfulScreen(),
+          EmptyNotificationScreen.id: (context) =>
+              const EmptyNotificationScreen(),
+          NotEmptyNotificationScreen.id: (context) =>
+              const NotEmptyNotificationScreen(),
+          NotificationScreen.id: (context) => const NotificationScreen(),
+          EmptyTransactionHistoryScreen.id: (context) =>
+              const EmptyTransactionHistoryScreen(),
+          NotEmptyTransactionHistoryScreen.id: (context) =>
+              const NotEmptyTransactionHistoryScreen(),
+          TransactionHistoryScreen.id: (context) =>
+              const TransactionHistoryScreen(),
+          KatalogPenukaranScreen.id: (context) =>
+              const KatalogPenukaranScreen(),
+          DetailPengambilanScreen.id: (context) =>
+              const DetailPengambilanScreen(),
+        },
       ),
-      initialRoute: TransactionHistoryScreen.id,
-      routes: {
-        WelcomeScreen.id: (context) => const WelcomeScreen(),
-        SignUpScreen.id: (context) => const SignUpScreen(),
-        SignUpOauthScreen.id: (context) => const SignUpOauthScreen(),
-        LoginScreen.id: (context) => const LoginScreen(),
-        MainScreen.id: (context) => const MainScreen(),
-        HomeScreen.id: (context) => const HomeScreen(),
-        PenukaranPoinScreen.id: (context) => const PenukaranPoinScreen(),
-        PenukaranPoinSuccessfulScreen.id: (context) =>
-            const PenukaranPoinSuccessfulScreen(),
-        PengambilanSampahScreen.id: (context) =>
-            const PengambilanSampahScreen(),
-        RequestPengambilanSampahScreen.id: (context) =>
-            const RequestPengambilanSampahScreen(),
-        PengambilanSampahSuccessfulScreen.id: (context) =>
-            const PengambilanSampahSuccessfulScreen(),
-        EmptyNotificationScreen.id: (context) =>
-            const EmptyNotificationScreen(),
-        NotEmptyNotificationScreen.id: (context) =>
-            const NotEmptyNotificationScreen(),
-        NotificationScreen.id: (context) => const NotificationScreen(),
-        EmptyTransactionHistoryScreen.id: (context) =>
-            const EmptyTransactionHistoryScreen(),
-        NotEmptyTransactionHistoryScreen.id: (context) =>
-            const NotEmptyTransactionHistoryScreen(),
-        TransactionHistoryScreen.id: (context) =>
-            const TransactionHistoryScreen(),
-      },
     );
   }
 }
