@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
-import 'package:hejokeun/screens/home_screen.dart';
+import 'package:hejokeun/screens/main_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 
 class PenukaranPoinSuccessfulScreen extends StatelessWidget {
@@ -17,7 +17,7 @@ class PenukaranPoinSuccessfulScreen extends StatelessWidget {
         ),
         leading: BackButton(
           onPressed: () {
-            Navigator.pushNamed(context, HomeScreen.id);
+            Navigator.pushNamed(context, MainScreen.id);
           },
         ),
         backgroundColor: kLG1,
