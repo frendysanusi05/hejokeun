@@ -112,6 +112,7 @@ class _DetailPengambilanScreenState extends State<DetailPengambilanScreen> {
                     element.quantity);
               }
 
+              value.clearCart();
               Navigator.pushNamedAndRemoveUntil(
                   context, MainScreen.id, (route) => false);
             },

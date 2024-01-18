@@ -16,7 +16,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
   User? user = FirebaseAuth.instance.currentUser;
 
   @override
@@ -100,9 +99,10 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
           const SizedBox(height: 60),
-          Expanded(
+          SizedBox(
+            height: 250,
             child: GridView.count(
-                childAspectRatio: (1 / 1.5),
+                childAspectRatio: (1 / 1.2),
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 crossAxisCount: 4,
                 children: [
@@ -260,6 +260,20 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ]),
           ),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 20, top: 0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              clipBehavior: Clip.none,
+              child: Row(children: [
+                TopScreenImage(screenImageName: 'main_screen_card_1.png'),
+                SizedBox(width: 20),
+                TopScreenImage(screenImageName: 'main_screen_card_2.png'),
+                SizedBox(width: 20),
+                TopScreenImage(screenImageName: 'main_screen_card_3.png'),
+              ]),
+            ),
+          )
         ],
       ),
       bottomNavigationBar: const Navbar(
