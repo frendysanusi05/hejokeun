@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hejokeun/components/navbar.dart';
 import 'package:hejokeun/screens/pengambilan_sampah/request_pengambilan_sampah_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -220,6 +221,9 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
           ),
           const SizedBox(height: 30.0),
         ],
+      ),
+      bottomNavigationBar: const Navbar(
+        currentIndex: 2,
       ),
     );
   }

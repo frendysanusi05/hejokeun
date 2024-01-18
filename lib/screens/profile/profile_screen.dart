@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/components/components.dart';
+import 'package:hejokeun/components/navbar.dart';
 import 'package:hejokeun/screens/welcome_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 import 'package:hejokeun/utils/profile.dart';
@@ -378,6 +379,9 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: const Navbar(
+        currentIndex: 3,
       ),
     );
   }
