@@ -26,11 +26,10 @@ class PengambilanSampahSuccessfulScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 240),
-            const TopScreenImage(
+            SizedBox(height: MediaQuery.of(context).size.height / 4),
+            TopScreenImage(
               screenImageName: 'pengambilan_sampah_successful.png',
-              width: 276.19,
-              height: 240,
+              width: MediaQuery.of(context).size.width / 2,
             ),
             const SizedBox(height: 48),
             Text(
