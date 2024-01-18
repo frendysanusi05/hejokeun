@@ -206,6 +206,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     textInputType: TextInputType.phone,
                     onChanged: (_) => _formKey.currentState?.validate(),
+                    validator: (value) {
+                      return value!.isEmpty
+                          ? null
+                          : value.length == 11 || value.length == 12
+                              ? null
+                              : "Nomor telepon invalid";
+                    },
                   ),
                   const SizedBox(height: 16),
                   AppTextFormField(
@@ -390,7 +397,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   isDisabled: !isValid,
                   onPressed: () async {
                     await createUserWithEmailAndPassword();
-                    Navigator.pushNamed(context, MainScreen.id);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, MainScreen.id, (route) => false);
                   },
                 );
               },

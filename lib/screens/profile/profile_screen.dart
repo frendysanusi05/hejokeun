@@ -95,11 +95,18 @@ class ProfileScreen extends StatelessWidget {
                           width: 73,
                           height: 73,
                         ),
+                        const SizedBox(height: 12),
+                        Text(
+                          profile.fullname,
+                          style: kH6.copyWith(
+                            color: kDarkBrown,
+                          ),
+                        ),
                       ],
                     ),
                     Positioned(
                       top: 0,
-                      bottom: 0,
+                      bottom: 35,
                       left: 0,
                       right: 0,
                       child: Container(
@@ -320,8 +327,10 @@ class ProfileScreen extends StatelessWidget {
                                             MediaQuery.of(context).size.width,
                                         onPressed: () async {
                                           await Auth().signOut();
-                                          Navigator.pushNamed(
-                                              context, WelcomeScreen.id);
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context,
+                                              WelcomeScreen.id,
+                                              (route) => false);
                                         },
                                       ),
                                       const SizedBox(height: 16.0),

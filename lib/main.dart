@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/screens/artikel/artikel_home_screen.dart';
 import 'package:hejokeun/screens/artikel/artikel_screen.dart';
+import 'package:hejokeun/screens/pengambilan_sampah/request_successful_screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -28,7 +29,7 @@ import 'package:hejokeun/screens/notifikasi/notification_screen.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/empty_transaction_history_screen.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/not_empty_transaction_history_screen.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/transaction_history_screen.dart';
-import 'package:hejokeun/screens/pengambilan_sampah/pengambilan_sampah_successful_screen.dart';
+import 'package:hejokeun/screens/katalog_penukaran/pengambilan_sampah_successful_screen.dart';
 import 'package:hejokeun/screens/pengambilan_sampah/request_pengambilan_sampah_screen.dart';
 import 'package:hejokeun/screens/maggot/about_maggot_screen.dart';
 import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
@@ -108,6 +109,8 @@ class MyApp extends StatelessWidget {
           MembershipScreen.id: (context) => const MembershipScreen(),
           MembershipOrderSuccessfulScreen.id: (context) =>
               const MembershipOrderSuccessfulScreen(),
+          RequestSuccessfulScreen.id: (context) =>
+              const RequestSuccessfulScreen(),
           ProfileScreen.id: (context) => const ProfileScreen(),
           ArtikelHomeScreen.id: (context) => const ArtikelHomeScreen(),
           ArtikelScreen.id: (context) => const ArtikelScreen(),

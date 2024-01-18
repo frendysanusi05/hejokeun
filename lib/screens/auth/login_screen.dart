@@ -61,7 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         errorMessage = e.message;
       });
-
       _formKey.currentState?.validate();
       showErrorMessage();
     }
