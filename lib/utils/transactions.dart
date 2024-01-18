@@ -28,11 +28,10 @@ Future<void> initializeTransactions() async {
 
   transactionDocuments = await getTransactionDocuments();
 
+  clearTransactions();
   if (transactionDocuments == null) {
     return;
   }
-
-  clearTransactions();
 
   for (QueryDocumentSnapshot document in transactionDocuments!) {
     final datetime = (document.data() as Map<String, dynamic>)['time'];

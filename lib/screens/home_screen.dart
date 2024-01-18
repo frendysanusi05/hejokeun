@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
+import 'package:hejokeun/screens/notifikasi/notification_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,50 +19,67 @@ class HomeScreen extends StatelessWidget {
               screenImageName: 'main_backdrop.png',
             ),
             Positioned(
-                top: 90,
-                child: Flex(
-                  direction: Axis.vertical,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                top: 42,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('Hai, Hejoers!',
-                        style: kH5.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        )),
-                    const SizedBox(height: 8),
-                    Card(
-                      surfaceTintColor: Colors.white,
-                      child: SizedBox(
-                          width: 300,
-                          height: 60,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16, right: 16),
-                            child: Flex(
-                              direction: Axis.horizontal,
-                              children: [
-                                Flex(
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, NotificationScreen.id);
+                      },
+                      child: const Icon(
+                        notification,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Flex(
+                      direction: Axis.vertical,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Hai, Hejoers!',
+                            style: kH5.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            )),
+                        const SizedBox(height: 8),
+                        Card(
+                          surfaceTintColor: Colors.white,
+                          child: SizedBox(
+                              width: 300,
+                              height: 60,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 16, right: 16),
+                                child: Flex(
                                   direction: Axis.horizontal,
                                   children: [
-                                    const TopScreenImage(
-                                      screenImageName: "psychiatry.png",
-                                      width: 30,
-                                      height: 30,
+                                    Flex(
+                                      direction: Axis.horizontal,
+                                      children: [
+                                        const TopScreenImage(
+                                          screenImageName: "psychiatry.png",
+                                          width: 30,
+                                          height: 30,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text("Jumlah Poin",
+                                            style: kBS3.copyWith(
+                                                color: kAG0,
+                                                fontWeight: FontWeight.w500)),
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("Jumlah Poin",
-                                        style: kBS3.copyWith(
-                                            color: kAG0,
-                                            fontWeight: FontWeight.w500)),
+                                    const Spacer(),
+                                    const Text("4000 Poin")
                                   ],
                                 ),
-                                const Spacer(),
-                                const Text("4000 Poin")
-                              ],
-                            ),
-                          )),
+                              )),
+                        ),
+                      ],
                     ),
                   ],
                 ))
@@ -78,7 +96,10 @@ class HomeScreen extends StatelessWidget {
                   direction: Axis.vertical,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, 'katalog_penukaran_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kLG4,
                           foregroundColor: kLG5,
@@ -102,7 +123,9 @@ class HomeScreen extends StatelessWidget {
                   direction: Axis.vertical,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'penukaran_poin_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kLG4,
                           foregroundColor: kLG5,
@@ -150,7 +173,9 @@ class HomeScreen extends StatelessWidget {
                   direction: Axis.vertical,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'statistik_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kLG4,
                           foregroundColor: kLG5,
@@ -173,7 +198,9 @@ class HomeScreen extends StatelessWidget {
                   direction: Axis.vertical,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'about_maggot_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kLG4,
                           foregroundColor: kLG5,
