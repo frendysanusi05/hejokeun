@@ -20,7 +20,8 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: kLG3,
       body: SingleChildScrollView(
         child: Container(
-          height: 700,
+          height: MediaQuery.of(context).size.height -
+              MediaQuery.of(context).size.height / 10,
           child: Stack(
             children: [
               Column(
