@@ -6,6 +6,7 @@ import 'package:hejokeun/utils/constants.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:hejokeun/components/navbar.dart';
 import 'package:intl/intl.dart';
+import 'dart:math';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -264,18 +265,24 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ]),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: 0),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 0),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 clipBehavior: Clip.none,
-                child: Row(children: [
-                  TopScreenImage(screenImageName: 'main_screen_card_1.png'),
-                  SizedBox(width: 20),
-                  TopScreenImage(screenImageName: 'main_screen_card_2.png'),
-                  SizedBox(width: 20),
-                  TopScreenImage(screenImageName: 'main_screen_card_3.png'),
-                ]),
+                child: SizedBox(
+                  height: max(
+                      MediaQuery.of(context).size.height - 454 + 208, 812.0),
+                  child: const Row(
+                    children: [
+                      TopScreenImage(screenImageName: 'main_screen_card_1.png'),
+                      SizedBox(width: 20),
+                      TopScreenImage(screenImageName: 'main_screen_card_2.png'),
+                      SizedBox(width: 20),
+                      TopScreenImage(screenImageName: 'main_screen_card_3.png'),
+                    ],
+                  ),
+                ),
               ),
             )
           ],

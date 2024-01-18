@@ -25,8 +25,7 @@ class PenukaranPoinSuccessfulScreen extends StatelessWidget {
       backgroundColor: kLG1,
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Container(
-            height: 812,
+          child: SizedBox(
             child: Column(
               children: [
                 const SizedBox(height: 240),

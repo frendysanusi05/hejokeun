@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hejokeun/screens/maggot/maggot_indonesia_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
+import 'dart:math';
 
 class AboutMaggotScreen extends StatelessWidget {
   const AboutMaggotScreen({super.key});
@@ -23,7 +24,7 @@ class AboutMaggotScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 821,
+          height: max(MediaQuery.of(context).size.height + 249, 812.0),
           child: Stack(
             children: [
               Column(
