@@ -27,24 +27,23 @@ Hejokeun adalah sebuah aplikasi yang memberikan layanan pengelolaan sampah rumah
 <table width="100%">
   <tbody>
     <tr>
-      <td width="1%"><img src="/docs/images/splashscreen.jpg"/></td>
-      <td width="1%"><img src="/docs/images/dashboard.jpg"/></td>
-       <td width="1%"><img src="/docs/images/login.jpg"/></td>
+      <td width="1%"><img src="/docs/images/welcome_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/register_screen_1.png"/></td>
+       <td width="1%"><img src="/docs/images/register_screen_2.png"/></td>
     </tr>
     <tr>
-      <td width="1%"><img src="/docs/images/signup.jpg"/></td>
-      <td width="1%"><img src="/docs/images/reminder.png"/></td>
-       <td width="1%"><img src="/docs/images/logbook.png"/></td>
+      <td width="1%"><img src="/docs/images/login_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/home_screen.png"/></td>
+       <td width="1%"><img src="/docs/images/catalogue_screen"/></td>
     </tr>
     <tr>
-      <td width="1%"><img src="/docs/images/relation.png"/></td>
-      <td width="1%"><img src="/docs/images/profile.png"/></td>
-      <td width="1%"><img src="/docs/images/log-activity.png"/></td>
+      <td width="1%"><img src="/docs/images/article_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/notif_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/main_screen.png"/></td>
     </tr>
     <tr>
-      <td width="1%"><img src="/docs/images/add-meal.png"/></td>
-      <td width="1%"><img src="/docs/images/add-exercise.png"/></td>
-      <td width="1%"><img src="/docs/images/add-sleep.png"/></td>
+      <td width="1%"><img src="/docs/images/order_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/point_exchange_screen.png"/></td>
     </tr>
   </tbody>
 </table>
