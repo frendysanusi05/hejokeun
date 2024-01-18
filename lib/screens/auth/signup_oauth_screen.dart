@@ -247,9 +247,10 @@ class _SignUpOauthScreenState extends State<SignUpOauthScreen> {
                   buttonColor: kAG1,
                   textColor: Colors.white,
                   isDisabled: !isValid,
-                  onPressed: () {
-                    createUserWithEmailAndPassword();
-                    Navigator.pushNamed(context, MainScreen.id);
+                  onPressed: () async {
+                    await createUserWithEmailAndPassword();
+                    Navigator.pushNamedAndRemoveUntil(
+                          context, MainScreen.id, (route) => false);
                   },
                 );
               },

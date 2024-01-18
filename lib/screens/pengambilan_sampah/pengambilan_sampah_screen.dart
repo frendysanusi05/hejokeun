@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hejokeun/components/navbar.dart';
 import 'package:hejokeun/screens/pengambilan_sampah/request_pengambilan_sampah_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -29,6 +30,9 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, () async {
+      await initializePickupScheduleData();
+    });
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
@@ -217,6 +221,9 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
           ),
           const SizedBox(height: 30.0),
         ],
+      ),
+      bottomNavigationBar: const Navbar(
+        currentIndex: 2,
       ),
     );
   }

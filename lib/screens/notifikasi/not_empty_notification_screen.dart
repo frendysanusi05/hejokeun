@@ -8,8 +8,6 @@ class NotEmptyNotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Notifications> notifications = getNotifications();
-
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -19,7 +17,6 @@ class NotEmptyNotificationScreen extends StatelessWidget {
           leading: BackButton(
             onPressed: () async {
               await readAllNotifications();
-              await initializeNotifications();
               Navigator.pop(context);
             },
           ),

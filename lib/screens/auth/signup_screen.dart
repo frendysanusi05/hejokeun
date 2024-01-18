@@ -99,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: passwordController.text,
       );
 
-      addUserDetails(
+      await addUserDetails(
         FirebaseAuth.instance.currentUser!.uid,
         fullnameController.text,
         nicknameController.text,
@@ -206,6 +206,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     textInputType: TextInputType.phone,
                     onChanged: (_) => _formKey.currentState?.validate(),
+                    validator: (value) {
+                      return value!.isEmpty
+                          ? null
+                          : value.length == 11 || value.length == 12
+                              ? null
+                              : "Nomor telepon invalid";
+                    },
                   ),
                   const SizedBox(height: 16),
                   AppTextFormField(
@@ -388,9 +395,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   buttonColor: kAG1,
                   textColor: Colors.white,
                   isDisabled: !isValid,
-                  onPressed: () {
-                    createUserWithEmailAndPassword();
-                    Navigator.pushNamed(context, MainScreen.id);
+                  onPressed: () async {
+                    await createUserWithEmailAndPassword();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, MainScreen.id, (route) => false);
                   },
                 );
               },

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/transaction_history_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
-import 'package:hejokeun/utils/transactions.dart';
 
 class EmptyTransactionHistoryScreen extends StatelessWidget {
   const EmptyTransactionHistoryScreen({super.key});
@@ -31,8 +30,7 @@ class EmptyTransactionHistoryScreen extends StatelessWidget {
         ),
         const SizedBox(height: 32),
         ElevatedButton(
-          onPressed: () async {
-            await initializeTransactions();
+          onPressed: () {
             Navigator.pushReplacementNamed(
                 context, TransactionHistoryScreen.id);
           },

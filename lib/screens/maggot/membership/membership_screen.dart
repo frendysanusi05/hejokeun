@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:hejokeun/screens/main_screen.dart';
-import 'package:hejokeun/screens/penukaran_poin/penukaran_poin_successful_screen.dart';
+import 'package:hejokeun/screens/maggot/membership/membership_order_successful_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 
 class MembershipScreen extends StatelessWidget {
@@ -23,19 +23,10 @@ class MembershipScreen extends StatelessWidget {
       backgroundColor: kLG3,
       body: Stack(
         children: [
-          Column(
+          const Column(
             children: [
-              AppBar(
-                leading: BackButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, MainScreen.id);
-                  },
-                  color: kDarkBrown,
-                ),
-                backgroundColor: kLG3,
-              ),
-              const SizedBox(height: 18),
-              const TopScreenImage(
+              SizedBox(height: 18),
+              TopScreenImage(
                 screenImageName: 'membership.png',
                 width: 303,
                 height: 226.43,
@@ -48,7 +39,7 @@ class MembershipScreen extends StatelessWidget {
             left: 0,
             right: 0,
             child: Image.asset(
-              'assets/images/custom_rectangle.png',
+              'assets/icons/custom_rectangle_1.png',
               width: 375,
               height: 466,
               fit: BoxFit.fill,
@@ -102,7 +93,7 @@ class MembershipScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 36),
                   CustomButton(
-                    buttonText: 'Rp xxxxxx / Bulan',
+                    buttonText: 'Rp75000/Bulan',
                     buttonColor: kAG1,
                     width: double.infinity,
                     textColor: Colors.white,
@@ -134,7 +125,7 @@ class MembershipScreen extends StatelessWidget {
                                     textColor: Colors.white,
                                     onPressed: () {
                                       Navigator.pushNamed(context,
-                                          PenukaranPoinSuccessfulScreen.id);
+                                          MembershipOrderSuccessfulScreen.id);
                                     },
                                   ),
                                   const SizedBox(height: 8),

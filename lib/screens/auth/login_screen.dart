@@ -61,7 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         errorMessage = e.message;
       });
-
       _formKey.currentState?.validate();
       showErrorMessage();
     }
@@ -195,8 +194,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     buttonColor: kAG0,
                     textColor: Colors.white,
                     isDisabled: !isValid,
-                    onPressed: () {
-                      signInWithEmailAndPassword;
+                    onPressed: () async {
+                      await signInWithEmailAndPassword();
                       Navigator.pushNamedAndRemoveUntil(
                           context, MainScreen.id, (route) => false);
                     });

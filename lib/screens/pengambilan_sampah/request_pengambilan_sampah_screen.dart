@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
-import 'package:hejokeun/screens/pengambilan_sampah/pengambilan_sampah_successful_screen.dart';
+import 'package:hejokeun/screens/pengambilan_sampah/request_successful_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 import 'package:hejokeun/utils/schedule_events.dart';
 
@@ -306,9 +306,8 @@ class _RequestPengambilanSampahScreenState
                       onPressed: () async {
                         await sendPickupRequest('organik', dateController.text,
                             timeController.text);
-                        await initializePickupScheduleData();
                         Navigator.pushNamed(
-                            context, PengambilanSampahSuccessfulScreen.id);
+                            context, RequestSuccessfulScreen.id);
                       });
                 },
               )

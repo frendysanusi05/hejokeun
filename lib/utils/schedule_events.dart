@@ -41,7 +41,7 @@ Future<void> initializePickupScheduleData() async {
                 (document.data() as Map<String, dynamic>)['time']),
           ),
         ]
-      }
+      },
   };
 
   var eventtMap = <DateTime, List<Event>>{};
@@ -59,7 +59,21 @@ Future<void> initializePickupScheduleData() async {
   kEvents = LinkedHashMap<DateTime, List<Event>>(
     equals: isSameDay,
     hashCode: getHashCode,
-  )..addAll(eventtMap);
+  )
+    ..addAll(eventtMap)
+    ..addAll({
+      for (DateTime date = kFirstDay;
+          date.isBefore(kLastDay);
+          date = date.add(const Duration(days: 1)))
+        if (date.weekday == DateTime.thursday)
+          DateTime.utc(date.year, date.month, date.day): [
+            const Event(
+              'Pengambilan Sampah',
+              'Staff Hejokeun akan mengambil sampah di perumahan Anda',
+              '09.30',
+            ),
+          ],
+    });
 }
 
 Future<List<QueryDocumentSnapshot>?> getScheduleDocuments() async {
@@ -78,7 +92,18 @@ Future<List<QueryDocumentSnapshot>?> getScheduleDocuments() async {
 
 String getTimeFromTimestamp(Timestamp timestamp) {
   DateTime dateTime = timestamp.toDate();
-  return '${dateTime.hour}:${dateTime.minute}';
+
+  String hour = dateTime.hour.toString();
+  String minute = dateTime.minute.toString();
+
+  if (hour.length == 1) {
+    hour = '0$hour';
+  }
+  if (minute.length == 1) {
+    minute = '0$minute';
+  }
+
+  return '$hour:$minute';
 }
 
 DateTime parseDateAndTime(String date, String time) {
