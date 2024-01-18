@@ -11,7 +11,7 @@ class EmptyTransactionHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 194),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.1),
         const TopScreenImage(
           screenImageName: '404.png',
           width: 240.8,
