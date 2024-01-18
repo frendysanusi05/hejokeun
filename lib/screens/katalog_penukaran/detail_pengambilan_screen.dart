@@ -155,7 +155,7 @@ class _DetailPengambilanScreenState extends State<DetailPengambilanScreen> {
                         height: 8,
                       ),
                       Text(
-                        "Perumahan Irenk 17 Blok F No 5, Depok Timur",
+                        "Jl. Ganesa No. 10, Coblong Bandung, 40132",
                         style: kH6.copyWith(color: Colors.black),
                       )
                     ]),
