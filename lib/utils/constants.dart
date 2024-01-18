@@ -107,3 +107,6 @@ const IconData sort =
     IconData(0xe5d2, fontFamily: 'MaterialIcons', matchTextDirection: true);
 const IconData check = IconData(0xe156, fontFamily: 'MaterialIcons');
 const IconData checkCircle = IconData(0xe159, fontFamily: 'MaterialIcons');
+const IconData cameraAlt = IconData(0xe130, fontFamily: 'MaterialIcons');
+const IconData arrowForwardIos =
+    IconData(0xe09c, fontFamily: 'MaterialIcons', matchTextDirection: true);

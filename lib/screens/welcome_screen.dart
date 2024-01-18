@@ -13,6 +13,12 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () {
+      if (Auth().currentUser != null) {
+        Navigator.pushNamed(context, MainScreen.id);
+      }
+    });
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -33,13 +39,6 @@ class WelcomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // const ScreenTitle(title: 'Selamat datang di Hejokeun!'),
-                    // const Text(
-                    //   'Aplikasi Eco green ...',
-                    //   textAlign: TextAlign.center,
-                    //   style: TextStyle(color: kDarkBrown, fontSize: kBR4),
-                    // ),
-                    // const SizedBox(height: 103),
                     Hero(
                       tag: 'signup_btn',
                       child: CustomButton(

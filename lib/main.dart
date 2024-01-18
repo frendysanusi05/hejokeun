@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
+import 'package:hejokeun/screens/profile/profile_screen.dart';
+import 'package:hejokeun/utils/profile.dart';
 import 'package:hejokeun/utils/transactions.dart';
 import 'firebase_options.dart';
 import 'package:hejokeun/utils/notifications.dart';
@@ -33,9 +36,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await initializePickupScheduleData();
-  await initializeNotifications();
-  await initializeTransactions();
+
+  Future.delayed(Duration.zero, () async {
+    if (Auth().currentUser != null) {
+      await initializeProfile();
+      await initializePickupScheduleData();
+      await initializeNotifications();
+      await initializeTransactions();
+    }
+  });
   runApp(const MyApp());
 }
 
@@ -88,6 +97,7 @@ class MyApp extends StatelessWidget {
           MembershipScreen.id: (context) => const MembershipScreen(),
           MembershipOrderSuccessfulScreen.id: (context) =>
               const MembershipOrderSuccessfulScreen(),
+          ProfileScreen.id: (context) => const ProfileScreen(),
         });
   }
 }

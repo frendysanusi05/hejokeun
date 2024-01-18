@@ -16,6 +16,10 @@ class TransactionHistoryScreen extends StatefulWidget {
 class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () async {
+      await initializeTransactions();
+    });
+
     List<Transactions> transactions = getTransactions();
 
     return Scaffold(
@@ -86,7 +90,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                             borderRadius:
                                                 const BorderRadius.all(
                                                     Radius.circular(8)),
-                                            onPressed: (int index) async {
+                                            onPressed: (int index) {
                                               setState(() {
                                                 for (int i = 0;
                                                     i < isSelected.length;
@@ -94,7 +98,6 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                   isSelected[i] = i == index;
                                                 }
                                               });
-                                              await initializeTransactions();
                                               Navigator.pushReplacementNamed(
                                                   context,
                                                   TransactionHistoryScreen.id);
@@ -144,7 +147,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                           Align(
                                             alignment: Alignment.bottomRight,
                                             child: ElevatedButton(
-                                              onPressed: () async {
+                                              onPressed: () {
                                                 setState(() {
                                                   for (int i = 0;
                                                       i < isSelected.length;
@@ -152,7 +155,6 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                     isSelected[i] = false;
                                                   }
                                                 });
-                                                await initializeTransactions();
                                                 Navigator.pushReplacementNamed(
                                                     context,
                                                     TransactionHistoryScreen

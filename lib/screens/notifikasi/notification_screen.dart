@@ -9,6 +9,9 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () async {
+      await initializeNotifications();
+    });
     List<Notifications> notifications = getNotifications();
 
     return notifications.isEmpty
