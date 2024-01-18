@@ -29,6 +29,9 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, () async {
+      await initializePickupScheduleData();
+    });
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }

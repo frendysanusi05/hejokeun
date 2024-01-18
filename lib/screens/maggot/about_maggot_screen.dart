@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hejokeun/screens/maggot/maggot_indonesia_screen.dart';
+import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 
 class AboutMaggotScreen extends StatelessWidget {
@@ -69,10 +70,43 @@ class AboutMaggotScreen extends StatelessWidget {
                       textAlign: TextAlign.justify,
                     ),
                     const SizedBox(height: 20),
-                    Image.asset(
-                      'assets/images/maggot_membership.png',
-                      width: MediaQuery.of(context).size.width,
-                      fit: BoxFit.contain,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, MembershipScreen.id);
+                      },
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            'assets/images/maggot_membership.png',
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.contain,
+                          ),
+                          Positioned(
+                            top: 0,
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 30),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Maggot\nMembership',
+                                    style: kH6.copyWith(color: kDarkBrown),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    'Dapatkan layanan\npemeliharaan intensif\nuntuk maggot Anda!',
+                                    style: kBS5.copyWith(color: kAG0),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 20),
                     Text(
@@ -85,8 +119,8 @@ class AboutMaggotScreen extends StatelessWidget {
                       clipBehavior: Clip.none,
                       child: Row(
                         children: [
-                          TextButton(
-                            onPressed: () {
+                          InkWell(
+                            onTap: () {
                               Navigator.pushNamed(
                                   context, MaggotIndonesiaScreen.id);
                             },
@@ -125,8 +159,8 @@ class AboutMaggotScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 16),
-                          TextButton(
-                            onPressed: () {},
+                          InkWell(
+                            onTap: () {},
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,

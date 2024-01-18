@@ -16,6 +16,10 @@ class TransactionHistoryScreen extends StatefulWidget {
 class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () async {
+      await initializeTransactions();
+    });
+
     List<Transactions> transactions = getTransactions();
 
     return Scaffold(

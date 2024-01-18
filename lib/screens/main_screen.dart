@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/auth.dart';
 import 'package:hejokeun/screens/home_screen.dart';
 import 'package:hejokeun/screens/pengambilan_sampah/pengambilan_sampah_screen.dart';
+import 'package:hejokeun/screens/profile/profile_screen.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/transaction_history_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 
@@ -20,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(),
     PengambilanSampahScreen(),
     TransactionHistoryScreen(),
-    Text('Akun Saya'),
+    ProfileScreen(),
   ];
 
   @override

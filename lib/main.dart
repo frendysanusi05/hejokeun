@@ -2,15 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/screens/artikel/artikel_home_screen.dart';
 import 'package:hejokeun/screens/artikel/artikel_screen.dart';
-import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
-import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
-import 'package:hejokeun/provider/cart_provider.dart';
-import 'package:hejokeun/screens/katalog_penukaran/detail_pengambilan_screen.dart';
-import 'package:hejokeun/screens/katalog_penukaran/katalog_penukaran_screen.dart';
-import 'package:hejokeun/screens/statistik/statistik_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:hejokeun/utils/transactions.dart';
 import 'firebase_options.dart';
+
+import 'package:hejokeun/auth.dart';
+import 'package:hejokeun/provider/cart_provider.dart';
+import 'package:hejokeun/utils/profile.dart';
+import 'package:hejokeun/utils/transactions.dart';
 import 'package:hejokeun/utils/notifications.dart';
 import 'package:hejokeun/utils/schedule_events.dart';
 
@@ -34,15 +32,27 @@ import 'package:hejokeun/screens/riwayat_transaksi/transaction_history_screen.da
 import 'package:hejokeun/screens/pengambilan_sampah/pengambilan_sampah_successful_screen.dart';
 import 'package:hejokeun/screens/pengambilan_sampah/request_pengambilan_sampah_screen.dart';
 import 'package:hejokeun/screens/maggot/about_maggot_screen.dart';
+import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
+import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
+import 'package:hejokeun/screens/profile/profile_screen.dart';
+import 'package:hejokeun/screens/katalog_penukaran/detail_pengambilan_screen.dart';
+import 'package:hejokeun/screens/katalog_penukaran/katalog_penukaran_screen.dart';
+import 'package:hejokeun/screens/statistik/statistik_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // await initializePickupScheduleData();
-  // await initializeNotifications();
-  // await initializeTransactions();
+
+  Future.delayed(Duration.zero, () async {
+    if (Auth().currentUser != null) {
+      await initializeProfile();
+      await initializePickupScheduleData();
+      await initializeNotifications();
+      await initializeTransactions();
+    }
+  });
   runApp(const MyApp());
 }
 
@@ -66,6 +76,8 @@ class MyApp extends StatelessWidget {
           SignUpScreen.id: (context) => const SignUpScreen(),
           SignUpOauthScreen.id: (context) => const SignUpOauthScreen(),
           LoginScreen.id: (context) => const LoginScreen(),
+          TermsAndConditionScreen.id: (context) =>
+              const TermsAndConditionScreen(),
           MainScreen.id: (context) => const MainScreen(),
           HomeScreen.id: (context) => const HomeScreen(),
           PenukaranPoinScreen.id: (context) => const PenukaranPoinScreen(),
@@ -98,6 +110,7 @@ class MyApp extends StatelessWidget {
           MembershipScreen.id: (context) => const MembershipScreen(),
           MembershipOrderSuccessfulScreen.id: (context) =>
               const MembershipOrderSuccessfulScreen(),
+          ProfileScreen.id: (context) => const ProfileScreen(),
           ArtikelHomeScreen.id: (context) => const ArtikelHomeScreen(),
           ArtikelScreen.id: (context) => const ArtikelScreen(),
         },

@@ -306,7 +306,6 @@ class _RequestPengambilanSampahScreenState
                       onPressed: () async {
                         await sendPickupRequest('organik', dateController.text,
                             timeController.text);
-                        await initializePickupScheduleData();
                         Navigator.pushNamed(
                             context, PengambilanSampahSuccessfulScreen.id);
                       });

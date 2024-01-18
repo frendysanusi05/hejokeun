@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:hejokeun/screens/notifikasi/notification_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
-import 'package:hejokeun/utils/notifications.dart';
 
 class EmptyNotificationScreen extends StatelessWidget {
   const EmptyNotificationScreen({super.key});
@@ -36,8 +35,7 @@ class EmptyNotificationScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             ElevatedButton(
-              onPressed: () async {
-                await initializeNotifications();
+              onPressed: () {
                 Navigator.pushReplacementNamed(context, NotificationScreen.id);
               },
               style: ElevatedButton.styleFrom(
