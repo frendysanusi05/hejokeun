@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hejokeun/components/navbar.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/empty_transaction_history_screen.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/not_empty_transaction_history_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
@@ -227,6 +228,9 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                 : const NotEmptyTransactionHistoryScreen(),
           ],
         ),
+      ),
+      bottomNavigationBar: const Navbar(
+        currentIndex: 2,
       ),
     );
   }

@@ -12,7 +12,6 @@ import 'package:hejokeun/utils/transactions.dart';
 import 'package:hejokeun/utils/notifications.dart';
 import 'package:hejokeun/utils/schedule_events.dart';
 
-import 'package:hejokeun/screens/home_screen.dart';
 import 'package:hejokeun/screens/maggot/maggot_indonesia_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_order_successful_screen.dart';
 import 'package:hejokeun/screens/main_screen.dart';
@@ -70,7 +69,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: ArtikelHomeScreen.id,
+        initialRoute: WelcomeScreen.id,
         routes: {
           WelcomeScreen.id: (context) => const WelcomeScreen(),
           SignUpScreen.id: (context) => const SignUpScreen(),
@@ -79,7 +78,6 @@ class MyApp extends StatelessWidget {
           TermsAndConditionScreen.id: (context) =>
               const TermsAndConditionScreen(),
           MainScreen.id: (context) => const MainScreen(),
-          HomeScreen.id: (context) => const HomeScreen(),
           PenukaranPoinScreen.id: (context) => const PenukaranPoinScreen(),
           PenukaranPoinSuccessfulScreen.id: (context) =>
               const PenukaranPoinSuccessfulScreen(),
