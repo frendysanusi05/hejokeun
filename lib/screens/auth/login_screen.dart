@@ -196,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     textColor: Colors.white,
                     isDisabled: !isValid,
                     onPressed: () async {
-                      await signInWithEmailAndPassword;
+                      await signInWithEmailAndPassword();
                       Navigator.pushNamedAndRemoveUntil(
                           context, MainScreen.id, (route) => false);
                     });

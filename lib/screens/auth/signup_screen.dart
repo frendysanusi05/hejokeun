@@ -99,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: passwordController.text,
       );
 
-      addUserDetails(
+      await addUserDetails(
         FirebaseAuth.instance.currentUser!.uid,
         fullnameController.text,
         nicknameController.text,
@@ -388,8 +388,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   buttonColor: kAG1,
                   textColor: Colors.white,
                   isDisabled: !isValid,
-                  onPressed: () {
-                    createUserWithEmailAndPassword();
+                  onPressed: () async {
+                    await createUserWithEmailAndPassword();
                     Navigator.pushNamed(context, MainScreen.id);
                   },
                 );

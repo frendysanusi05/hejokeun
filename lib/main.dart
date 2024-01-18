@@ -43,8 +43,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  print(Auth().currentUser);
-
   Future.delayed(Duration.zero, () async {
     if (Auth().currentUser != null) {
       await initializeProfile();
