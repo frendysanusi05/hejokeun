@@ -223,7 +223,7 @@ class _PengambilanSampahScreenState extends State<PengambilanSampahScreen> {
         ],
       ),
       bottomNavigationBar: const Navbar(
-        currentIndex: 2,
+        currentIndex: 1,
       ),
     );
   }
