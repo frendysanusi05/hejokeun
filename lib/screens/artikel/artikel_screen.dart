@@ -11,7 +11,6 @@ class ArtikelScreen extends StatelessWidget {
     final dynamic artikel = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
         appBar: AppBar(
-          title: Text('Artikel'),
           backgroundColor: Colors.transparent,
         ),
         body: SingleChildScrollView(

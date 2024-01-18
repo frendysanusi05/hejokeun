@@ -20,13 +20,13 @@ class _StatistikScreenState extends State<StatistikScreen> {
   late List<StatistikData> _chartData;
   dynamic historyData;
   late QuerySnapshot historySnapshot;
-  late num totalDonasi;
-  late num totalOrganik;
-  late num totalBotol;
-  late num totalPlastik;
-  late num totalMinyakJelantah;
-  late num totalElektronik;
-  late num totalLainnya;
+  num totalDonasi = 0;
+  num totalOrganik = 0;
+  num totalBotol = 0;
+  num totalPlastik = 0;
+  num totalMinyakJelantah = 0;
+  num totalElektronik = 0;
+  num totalLainnya = 0;
 
   List<String> months = [
     'Jan',
@@ -240,7 +240,7 @@ class _StatistikScreenState extends State<StatistikScreen> {
                           Row(
                             children: [
                               Text(
-                                '${totalDonasi / 8}',
+                                '${(totalDonasi / 8).toStringAsFixed(2)}',
                                 style: kH5.copyWith(color: kDarkBrown),
                               ),
                               Text(

@@ -165,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, 'artikel_screen');
+                          Navigator.pushNamed(context, 'artikel_home_screen');
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: kLG4,

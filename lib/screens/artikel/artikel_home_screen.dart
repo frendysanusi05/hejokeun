@@ -34,7 +34,7 @@ class _ArtikelHomeScreenState extends State<ArtikelHomeScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Artikel'),
+        foregroundColor: Colors.white,
         backgroundColor: Colors.transparent,
       ),
       body: Column(
