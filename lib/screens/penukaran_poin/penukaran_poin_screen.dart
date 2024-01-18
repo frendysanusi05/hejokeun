@@ -121,60 +121,61 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
-          child: SizedBox(
-            height: max(MediaQuery.of(context).size.height + 154.44, 812.0),
-            child: Center(
-              child: Column(
-                children: [
-                  const SizedBox(height: 3),
-                  Text(
-                    'Jumlah Poin',
-                    style: kH5.copyWith(
-                      color: Colors.white,
-                    ),
+          child: Center(
+            child: Column(
+              children: [
+                const SizedBox(height: 3),
+                Text(
+                  'Jumlah Poin',
+                  style: kH5.copyWith(
+                    color: Colors.white,
                   ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/psychiatry.png',
-                        width: 30,
-                        height: 30,
-                      ),
-                      const SizedBox(width: 12),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            points.toString(),
-                            style: kH4.copyWith(color: Colors.white),
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            'Points',
-                            style: kBS4.copyWith(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/psychiatry.png',
+                      width: 30,
+                      height: 30,
                     ),
-                    child: Column(
+                    const SizedBox(width: 12),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 24,
-                            right: 24,
-                          ),
+                        Text(
+                          points.toString(),
+                          style: kH4.copyWith(color: Colors.white),
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Points',
+                          style: kBS4.copyWith(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 24,
+                          right: 24,
+                        ),
+                        child: SizedBox(
+                          height: max(
+                              MediaQuery.of(context).size.height + 155, 812.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -381,11 +382,11 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
                             ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
