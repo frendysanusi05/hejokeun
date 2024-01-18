@@ -45,7 +45,6 @@ class Navbar extends StatelessWidget {
       ],
       currentIndex: currentIndex,
       onTap: (int index) {
-        print('djsajd');
         Navigator.pushNamed(context, _pages[index]);
       },
     );

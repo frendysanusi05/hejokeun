@@ -93,7 +93,7 @@ class MembershipScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 36),
                   CustomButton(
-                    buttonText: 'Rp xxxxxx / Bulan',
+                    buttonText: 'Rp75000/Bulan',
                     buttonColor: kAG1,
                     width: double.infinity,
                     textColor: Colors.white,

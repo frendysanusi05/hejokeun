@@ -18,7 +18,7 @@ import 'package:hejokeun/screens/notifikasi/notification_screen.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/empty_transaction_history_screen.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/not_empty_transaction_history_screen.dart';
 import 'package:hejokeun/screens/riwayat_transaksi/transaction_history_screen.dart';
-import 'package:hejokeun/screens/pengambilan_sampah/pengambilan_sampah_successful_screen.dart';
+import 'package:hejokeun/screens/katalog_penukaran/pengambilan_sampah_successful_screen.dart';
 import 'package:hejokeun/screens/pengambilan_sampah/request_pengambilan_sampah_screen.dart';
 import 'package:hejokeun/screens/maggot/about_maggot_screen.dart';
 

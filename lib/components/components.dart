@@ -69,7 +69,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          onPressed();
+          isDisabled ? null : onPressed();
         },
         child: Material(
           borderRadius: BorderRadius.circular(30),

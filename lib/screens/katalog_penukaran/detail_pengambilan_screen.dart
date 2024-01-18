@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hejokeun/provider/cart_provider.dart';
-import 'package:hejokeun/screens/main_screen.dart';
+import 'package:hejokeun/screens/katalog_penukaran/pengambilan_sampah_successful_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hejokeun/utils/constants.dart';
 import 'package:hejokeun/components/components.dart';
@@ -112,8 +112,8 @@ class _DetailPengambilanScreenState extends State<DetailPengambilanScreen> {
                     element.quantity);
               }
 
-              Navigator.pushNamedAndRemoveUntil(
-                  context, MainScreen.id, (route) => false);
+              Navigator.pushNamedAndRemoveUntil(context,
+                  PengambilanSampahSuccessfulScreen.id, (route) => false);
             },
             style: FilledButton.styleFrom(
                 shape: RoundedRectangleBorder(

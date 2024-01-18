@@ -3,9 +3,9 @@ import 'package:hejokeun/components/components.dart';
 import 'package:hejokeun/screens/main_screen.dart';
 import 'package:hejokeun/utils/constants.dart';
 
-class PengambilanSampahSuccessfulScreen extends StatelessWidget {
-  const PengambilanSampahSuccessfulScreen({super.key});
-  static String id = 'pengambilan_sampah_successful_screen';
+class RequestSuccessfulScreen extends StatelessWidget {
+  const RequestSuccessfulScreen({super.key});
+  static String id = 'request_successful_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -20,24 +20,25 @@ class PengambilanSampahSuccessfulScreen extends StatelessWidget {
             Navigator.pushNamed(context, MainScreen.id);
           },
         ),
-        backgroundColor: kLG1,
+        backgroundColor: kLG2,
       ),
-      backgroundColor: kLG1,
+      backgroundColor: kLG2,
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 240),
             const TopScreenImage(
-              screenImageName: 'pengambilan_sampah_successful.png',
-              width: 276.19,
-              height: 240,
+              screenImageName: 'request_successful.png',
+              width: 240.41,
+              height: 270,
             ),
-            const SizedBox(height: 59),
+            const SizedBox(height: 48),
             Text(
-              'Request Pengambilan Sampah berhasil dilakukan',
+              'Berhasil mengajukan request',
               style: kH6.copyWith(
-                color: Colors.white,
+                color: kAG0,
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

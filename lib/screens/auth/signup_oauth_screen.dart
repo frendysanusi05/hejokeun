@@ -249,7 +249,8 @@ class _SignUpOauthScreenState extends State<SignUpOauthScreen> {
                   isDisabled: !isValid,
                   onPressed: () async {
                     await createUserWithEmailAndPassword();
-                    Navigator.pushNamed(context, MainScreen.id);
+                    Navigator.pushNamedAndRemoveUntil(
+                          context, MainScreen.id, (route) => false);
                   },
                 );
               },
