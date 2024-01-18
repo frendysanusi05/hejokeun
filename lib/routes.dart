@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
 
-import 'package:hejokeun/screens/home_screen.dart';
 import 'package:hejokeun/screens/maggot/maggot_indonesia_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_order_successful_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
@@ -30,7 +29,6 @@ class Routes {
   static String login = LoginScreen.id;
   static String termsAndCondition = TermsAndConditionScreen.id;
   static String main = MainScreen.id;
-  static String home = HomeScreen.id;
   static String penukaranPoin = PenukaranPoinScreen.id;
   static String penukaranPoinSuccessful = PenukaranPoinSuccessfulScreen.id;
   static String pengambilanSampah = PengambilanSampahScreen.id;
@@ -56,7 +54,6 @@ class Routes {
     login: (context) => const LoginScreen(),
     termsAndCondition: (context) => const TermsAndConditionScreen(),
     main: (context) => const MainScreen(),
-    home: (context) => const HomeScreen(),
     penukaranPoin: (context) => const PenukaranPoinScreen(),
     penukaranPoinSuccessful: (context) => const PenukaranPoinSuccessfulScreen(),
     pengambilanSampah: (context) => const PengambilanSampahScreen(),

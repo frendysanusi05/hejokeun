@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/artikel/artikel_home_screen.dart';
+import 'package:hejokeun/screens/artikel/artikel_screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -10,7 +12,6 @@ import 'package:hejokeun/utils/transactions.dart';
 import 'package:hejokeun/utils/notifications.dart';
 import 'package:hejokeun/utils/schedule_events.dart';
 
-import 'package:hejokeun/screens/home_screen.dart';
 import 'package:hejokeun/screens/maggot/maggot_indonesia_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_order_successful_screen.dart';
 import 'package:hejokeun/screens/main_screen.dart';
@@ -77,7 +78,6 @@ class MyApp extends StatelessWidget {
           TermsAndConditionScreen.id: (context) =>
               const TermsAndConditionScreen(),
           MainScreen.id: (context) => const MainScreen(),
-          HomeScreen.id: (context) => const HomeScreen(),
           PenukaranPoinScreen.id: (context) => const PenukaranPoinScreen(),
           PenukaranPoinSuccessfulScreen.id: (context) =>
               const PenukaranPoinSuccessfulScreen(),
@@ -109,6 +109,8 @@ class MyApp extends StatelessWidget {
           MembershipOrderSuccessfulScreen.id: (context) =>
               const MembershipOrderSuccessfulScreen(),
           ProfileScreen.id: (context) => const ProfileScreen(),
+          ArtikelHomeScreen.id: (context) => const ArtikelHomeScreen(),
+          ArtikelScreen.id: (context) => const ArtikelScreen(),
         },
       ),
     );
