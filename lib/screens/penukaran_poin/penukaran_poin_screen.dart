@@ -158,7 +158,6 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
                 ),
                 const SizedBox(height: 24),
                 Container(
-                  height: MediaQuery.of(context).size.height - 190,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
