@@ -108,8 +108,8 @@ class _DetailPengambilanScreenState extends State<DetailPengambilanScreen> {
 
               // Add history
               for (var element in value.cartItems) {
-                addHistory(
-                    element.penukaran.name, 'penukaran', element.quantity);
+                addHistory(element.penukaran.name, element.penukaran.type,
+                    element.quantity);
               }
 
               Navigator.pushNamedAndRemoveUntil(

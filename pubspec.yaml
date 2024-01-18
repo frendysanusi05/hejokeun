@@ -44,6 +44,8 @@ dependencies:
   table_calendar: ^3.0.9
   intl: ^0.18.1
   provider: ^6.1.1
+  flutter_echarts: ^2.5.0
+  syncfusion_flutter_charts: ^24.1.45+2
 
 dev_dependencies:
   flutter_test:

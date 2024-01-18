@@ -5,6 +5,7 @@ import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
 import 'package:hejokeun/provider/cart_provider.dart';
 import 'package:hejokeun/screens/katalog_penukaran/detail_pengambilan_screen.dart';
 import 'package:hejokeun/screens/katalog_penukaran/katalog_penukaran_screen.dart';
+import 'package:hejokeun/screens/statistik/statistik_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hejokeun/utils/transactions.dart';
 import 'firebase_options.dart';
@@ -37,9 +38,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await initializePickupScheduleData();
-  await initializeNotifications();
-  await initializeTransactions();
+  // await initializePickupScheduleData();
+  // await initializeNotifications();
+  // await initializeTransactions();
   runApp(const MyApp());
 }
 
@@ -91,6 +92,7 @@ class MyApp extends StatelessWidget {
               const DetailPengambilanScreen(),
           AboutMaggotScreen.id: (context) => const AboutMaggotScreen(),
           MaggotIndonesiaScreen.id: (context) => const MaggotIndonesiaScreen(),
+          StatistikScreen.id: (context) => StatistikScreen(),
           MembershipScreen.id: (context) => const MembershipScreen(),
           MembershipOrderSuccessfulScreen.id: (context) =>
               const MembershipOrderSuccessfulScreen(),

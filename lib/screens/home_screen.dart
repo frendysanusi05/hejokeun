@@ -105,7 +105,9 @@ class HomeScreen extends StatelessWidget {
                   direction: Axis.vertical,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'penukaran_poin_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kLG4,
                           foregroundColor: kLG5,
@@ -153,7 +155,9 @@ class HomeScreen extends StatelessWidget {
                   direction: Axis.vertical,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'statistik_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kLG4,
                           foregroundColor: kLG5,
@@ -176,7 +180,9 @@ class HomeScreen extends StatelessWidget {
                   direction: Axis.vertical,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'about_maggot_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kLG4,
                           foregroundColor: kLG5,
