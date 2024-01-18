@@ -23,19 +23,10 @@ class MembershipScreen extends StatelessWidget {
       backgroundColor: kLG3,
       body: Stack(
         children: [
-          Column(
+          const Column(
             children: [
-              AppBar(
-                leading: BackButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, MainScreen.id);
-                  },
-                  color: kDarkBrown,
-                ),
-                backgroundColor: kLG3,
-              ),
-              const SizedBox(height: 18),
-              const TopScreenImage(
+              SizedBox(height: 18),
+              TopScreenImage(
                 screenImageName: 'membership.png',
                 width: 303,
                 height: 226.43,
