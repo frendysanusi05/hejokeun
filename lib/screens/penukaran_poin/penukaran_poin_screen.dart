@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hejokeun/components/components.dart';
 import 'package:hejokeun/utils/constants.dart';
 import 'package:hejokeun/screens/penukaran_poin/penukaran_poin_successful_screen.dart';
+import 'dart:math';
 
 class PenukaranPoinScreen extends StatefulWidget {
   const PenukaranPoinScreen({super.key});
@@ -158,7 +159,6 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
                 ),
                 const SizedBox(height: 24),
                 Container(
-                  height: MediaQuery.of(context).size.height - 190,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -173,204 +173,214 @@ class _PenukaranPoinScreenState extends State<PenukaranPoinScreen> {
                           left: 24,
                           right: 24,
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 33.83,
-                            ),
-                            Text(
-                              'Jumlah Poin yang ingin ditukarkan',
-                              style: kBS3.copyWith(
-                                color: kAG0,
+                        child: SizedBox(
+                          height: max(
+                              MediaQuery.of(context).size.height + 155, 812.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 33.83,
                               ),
-                            ),
-                            const SizedBox(height: 8),
-                            TextFormField(
-                              controller: coinController,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                hintText: 'Masukkan jumlah koin',
-                                labelStyle: kBR3.copyWith(
-                                  color: kLabel,
+                              Text(
+                                'Jumlah Poin yang ingin ditukarkan',
+                                style: kBS3.copyWith(
+                                  color: kAG0,
                                 ),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: const BorderSide(
-                                    color: kAG2,
-                                    width: 1.0,
+                              ),
+                              const SizedBox(height: 8),
+                              TextFormField(
+                                controller: coinController,
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  hintText: 'Masukkan jumlah koin',
+                                  labelStyle: kBR3.copyWith(
+                                    color: kLabel,
+                                  ),
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.never,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                    borderSide: const BorderSide(
+                                      color: kAG2,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                    borderSide: const BorderSide(
+                                      color: kAG1,
+                                      width: 1.2,
+                                    ),
                                   ),
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: const BorderSide(
-                                    color: kAG1,
-                                    width: 1.2,
+                                style: kBR3.copyWith(
+                                  color:
+                                      const Color(0xFF3C3C43).withOpacity(0.6),
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Setiap 200 Poin dapat ditukar menjadi Rp 1000',
+                                style: kBR4.copyWith(
+                                  color: kAG0,
+                                ),
+                              ),
+                              const SizedBox(height: 31),
+                              Text(
+                                'Kemana poin Anda ingin dikonversi?',
+                                style: kBS3.copyWith(
+                                  color: kAG0,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Column(
+                                children: [
+                                  PaymentMethod(
+                                    value: 1,
+                                    type: _type,
+                                    handleRadio: _handleRadio,
+                                    text: 'GoPay',
+                                    asset: 'assets/images/gopay.png',
+                                    showBorderRadius: true,
+                                    controller: paymentController,
                                   ),
-                                ),
+                                  PaymentMethod(
+                                    value: 2,
+                                    type: _type,
+                                    handleRadio: _handleRadio,
+                                    text: 'ShopeePay',
+                                    asset: 'assets/images/shopeepay.png',
+                                    showTopBorder: false,
+                                    controller: paymentController,
+                                  ),
+                                  PaymentMethod(
+                                    value: 3,
+                                    type: _type,
+                                    handleRadio: _handleRadio,
+                                    text: 'DANA',
+                                    asset: 'assets/images/dana.png',
+                                    showTopBorder: false,
+                                    controller: paymentController,
+                                  ),
+                                ],
                               ),
-                              style: kBR3.copyWith(
-                                color: const Color(0xFF3C3C43).withOpacity(0.6),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              'Setiap 200 Poin dapat ditukar menjadi Rp 1000',
-                              style: kBR4.copyWith(
-                                color: kAG0,
-                              ),
-                            ),
-                            const SizedBox(height: 31),
-                            Text(
-                              'Kemana poin Anda ingin dikonversi?',
-                              style: kBS3.copyWith(
-                                color: kAG0,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Column(
-                              children: [
-                                PaymentMethod(
-                                  value: 1,
-                                  type: _type,
-                                  handleRadio: _handleRadio,
-                                  text: 'GoPay',
-                                  asset: 'assets/images/gopay.png',
-                                  showBorderRadius: true,
-                                  controller: paymentController,
-                                ),
-                                PaymentMethod(
-                                  value: 2,
-                                  type: _type,
-                                  handleRadio: _handleRadio,
-                                  text: 'ShopeePay',
-                                  asset: 'assets/images/shopeepay.png',
-                                  showTopBorder: false,
-                                  controller: paymentController,
-                                ),
-                                PaymentMethod(
-                                  value: 3,
-                                  type: _type,
-                                  handleRadio: _handleRadio,
-                                  text: 'DANA',
-                                  asset: 'assets/images/dana.png',
-                                  showTopBorder: false,
-                                  controller: paymentController,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 36),
-                            ValueListenableBuilder(
-                              valueListenable: fieldValidNotifier,
-                              builder: (_, isValid, __) {
-                                return _type == 0
-                                    ? Container()
-                                    : CustomButton(
-                                        buttonText: 'Tukarkan Poin',
-                                        buttonColor: kAG0,
-                                        width: double.infinity,
-                                        textColor: Colors.white,
-                                        isDisabled: !isValid,
-                                        onPressed: () {
-                                          showModalBottomSheet(
-                                            context: context,
-                                            shape: const RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(12),
-                                              topRight: Radius.circular(12),
-                                            )),
-                                            builder: (BuildContext context) {
-                                              return Stack(
-                                                clipBehavior: Clip.none,
-                                                children: [
-                                                  Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            16.0),
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          'Apakah Anda yakin?',
-                                                          style: kBS1.copyWith(
-                                                              color:
-                                                                  kDarkBrown),
-                                                        ),
-                                                        const SizedBox(
-                                                            height: 16.0),
-                                                        CustomButton(
-                                                          buttonText:
-                                                              'Ya, saya yakin',
-                                                          buttonColor: kAG0,
-                                                          textColor:
-                                                              Colors.white,
-                                                          isDisabled: !isValid,
-                                                          width: MediaQuery.of(
-                                                                  context)
+                              const SizedBox(height: 36),
+                              ValueListenableBuilder(
+                                valueListenable: fieldValidNotifier,
+                                builder: (_, isValid, __) {
+                                  return _type == 0
+                                      ? Container()
+                                      : CustomButton(
+                                          buttonText: 'Tukarkan Poin',
+                                          buttonColor: kAG0,
+                                          width: double.infinity,
+                                          textColor: Colors.white,
+                                          isDisabled: !isValid,
+                                          onPressed: () {
+                                            showModalBottomSheet(
+                                              context: context,
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                topLeft: Radius.circular(12),
+                                                topRight: Radius.circular(12),
+                                              )),
+                                              builder: (BuildContext context) {
+                                                return Stack(
+                                                  clipBehavior: Clip.none,
+                                                  children: [
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16.0),
+                                                      width:
+                                                          MediaQuery.of(context)
                                                               .size
                                                               .width,
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Apakah Anda yakin?',
+                                                            style: kBS1.copyWith(
+                                                                color:
+                                                                    kDarkBrown),
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 16.0),
+                                                          CustomButton(
+                                                            buttonText:
+                                                                'Ya, saya yakin',
+                                                            buttonColor: kAG0,
+                                                            textColor:
+                                                                Colors.white,
+                                                            isDisabled:
+                                                                !isValid,
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            onPressed: () {
+                                                              updatePoints(points -
+                                                                  int.parse(
+                                                                      coinController
+                                                                          .text));
+                                                              Navigator.pushNamed(
+                                                                  context,
+                                                                  PenukaranPoinSuccessfulScreen
+                                                                      .id);
+                                                            },
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 16.0),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                      top: -50,
+                                                      right: 16,
+                                                      child: Container(
+                                                        width: 32,
+                                                        height: 32,
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color: Colors.white,
+                                                        ),
+                                                        child: IconButton(
                                                           onPressed: () {
-                                                            updatePoints(points -
-                                                                int.parse(
-                                                                    coinController
-                                                                        .text));
-                                                            Navigator.pushNamed(
-                                                                context,
-                                                                PenukaranPoinSuccessfulScreen
-                                                                    .id);
+                                                            Navigator.pop(
+                                                                context);
                                                           },
+                                                          icon: const Icon(
+                                                            Icons.close_rounded,
+                                                          ),
+                                                          padding:
+                                                              EdgeInsets.zero,
                                                         ),
-                                                        const SizedBox(
-                                                            height: 16.0),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    top: -50,
-                                                    right: 16,
-                                                    child: Container(
-                                                      width: 32,
-                                                      height: 32,
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color: Colors.white,
-                                                      ),
-                                                      child: IconButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        icon: const Icon(
-                                                          Icons.close_rounded,
-                                                        ),
-                                                        padding:
-                                                            EdgeInsets.zero,
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                      );
-                              },
-                            )
-                          ],
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                        );
+                                },
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],

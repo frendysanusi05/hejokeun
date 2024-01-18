@@ -23,23 +23,27 @@ class PenukaranPoinSuccessfulScreen extends StatelessWidget {
         backgroundColor: kLG1,
       ),
       backgroundColor: kLG1,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 240),
-            const TopScreenImage(
-              screenImageName: 'money_investment.png',
-              width: 276.19,
-              height: 240,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: SizedBox(
+            child: Column(
+              children: [
+                const SizedBox(height: 240),
+                const TopScreenImage(
+                  screenImageName: 'money_investment.png',
+                  width: 276.19,
+                  height: 240,
+                ),
+                const SizedBox(height: 59),
+                Text(
+                  'Poinmu berhasil ditukarkan',
+                  style: kH6.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 59),
-            Text(
-              'Poinmu berhasil ditukarkan',
-              style: kH6.copyWith(
-                color: Colors.white,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

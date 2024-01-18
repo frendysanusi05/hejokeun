@@ -20,7 +20,7 @@ class EmptyNotificationScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 275),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
             const TopScreenImage(
               screenImageName: '404.png',
               width: 240.8,

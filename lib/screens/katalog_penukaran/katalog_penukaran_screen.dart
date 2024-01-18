@@ -197,7 +197,7 @@ class _KatalogPenukaranScreenState extends State<KatalogPenukaranScreen> {
                                     style: kBS5.copyWith(color: Colors.white),
                                   ),
                                   Text(
-                                    '${value.getTotalQuantity()} kg',
+                                    '${value.getTotalQuantity().toStringAsFixed(2)} kg',
                                     style: kBS5.copyWith(color: Colors.white),
                                   ),
                                 ],

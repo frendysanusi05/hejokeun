@@ -216,7 +216,7 @@ class _DetailPengambilanScreenState extends State<DetailPengambilanScreen> {
                                     borderRadius: BorderRadius.circular(20)),
                               ),
                               child: Text(
-                                  '${value.cartItems[index].quantity.toString()} kg',
+                                  '${value.cartItems[index].quantity.toStringAsFixed(2)} kg',
                                   style: kH7.copyWith(color: kAG1)),
                             )
                           ],
@@ -277,7 +277,7 @@ class _DetailPengambilanScreenState extends State<DetailPengambilanScreen> {
                             style: kBR4.copyWith(color: kDarkBrown),
                           ),
                           Text(
-                            '${value.getTotalQuantity()} kg',
+                            '${value.getTotalQuantity().toStringAsFixed(2)} kg',
                             style: kBR4.copyWith(color: kDarkBrown),
                           )
                         ],

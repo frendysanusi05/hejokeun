@@ -16,17 +16,37 @@ Hejokeun adalah sebuah aplikasi yang memberikan layanan pengelolaan sampah rumah
 -   Flutter 3.16.5
 -   Firebase
 
-## Features
+## How To Run
 
--   User Login dan Register
-    Pengguna dapat menggunakan aplikasi Hejokeun dengan melakukan login dengan akun yang dimilikinya. Bila pengguna belum memiliki akun, maka ia dapat mendaftarkan akun dengan menggunakan kode unik rumah yang dimiliki. Login dan register dapat dilakukan menggunakan email dan password, Google, dan Facebook.
--   Main menu
-    Tampilan awal yang ditunjukan ke pengguna setelah melakukan login. Pada tampilan ini pengguna dapat menuju ke fitur-fitur yang ingin digunakannya.
+-   Download the APK from [our release](https://github.com/frendysanusi05/hejokeun/releases/tag/publish).
+-   Install the APK on your Android device.
+-   Use the app!
 
-## Screenshots
+## App Screenshots
 
-![Urutan kiri-kanan: layar selamat datang, layar register, layar login, layar tampilan utama](docs/images/screens_1.png)
-Urutan kiri-kanan: Layar selamat datang, Layar register, Layar login, Layar tampilan utama
+<table width="100%">
+  <tbody>
+    <tr>
+      <td width="1%"><img src="/docs/images/welcome_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/register_screen_1.png"/></td>
+       <td width="1%"><img src="/docs/images/register_screen_2.png"/></td>
+    </tr>
+    <tr>
+      <td width="1%"><img src="/docs/images/login_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/home_screen.png"/></td>
+       <td width="1%"><img src="/docs/images/catalogue_screen"/></td>
+    </tr>
+    <tr>
+      <td width="1%"><img src="/docs/images/article_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/notif_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/main_screen.png"/></td>
+    </tr>
+    <tr>
+      <td width="1%"><img src="/docs/images/order_screen.png"/></td>
+      <td width="1%"><img src="/docs/images/point_exchange_screen.png"/></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Created By
 
