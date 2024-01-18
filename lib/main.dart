@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hejokeun/screens/artikel/artikel_home_screen.dart';
+import 'package:hejokeun/screens/artikel/artikel_screen.dart';
 import 'package:hejokeun/screens/auth/terms_and_condition_screen.dart';
 import 'package:hejokeun/screens/maggot/membership/membership_screen.dart';
 import 'package:hejokeun/provider/cart_provider.dart';
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: WelcomeScreen.id,
+        initialRoute: ArtikelHomeScreen.id,
         routes: {
           WelcomeScreen.id: (context) => const WelcomeScreen(),
           SignUpScreen.id: (context) => const SignUpScreen(),
@@ -96,6 +98,8 @@ class MyApp extends StatelessWidget {
           MembershipScreen.id: (context) => const MembershipScreen(),
           MembershipOrderSuccessfulScreen.id: (context) =>
               const MembershipOrderSuccessfulScreen(),
+          ArtikelHomeScreen.id: (context) => const ArtikelHomeScreen(),
+          ArtikelScreen.id: (context) => const ArtikelScreen(),
         },
       ),
     );

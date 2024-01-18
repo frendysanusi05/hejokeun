@@ -73,7 +73,6 @@ class _StatistikScreenState extends State<StatistikScreen> {
           .where('created_at', isGreaterThanOrEqualTo: lastWeekTimestamp)
           .where('created_at', isLessThanOrEqualTo: todayTimestamp)
           .get();
-      print(res.docs[0].data());
       setState(() {
         historyData = res.docs;
         _chartData = createChartData();
