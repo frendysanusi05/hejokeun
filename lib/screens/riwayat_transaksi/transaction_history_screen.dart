@@ -90,7 +90,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                             borderRadius:
                                                 const BorderRadius.all(
                                                     Radius.circular(8)),
-                                            onPressed: (int index) {
+                                            onPressed: (int index) async {
                                               setState(() {
                                                 for (int i = 0;
                                                     i < isSelected.length;
@@ -98,6 +98,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                   isSelected[i] = i == index;
                                                 }
                                               });
+                                              await initializeTransactions();
                                               Navigator.pushReplacementNamed(
                                                   context,
                                                   TransactionHistoryScreen.id);
@@ -147,7 +148,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                           Align(
                                             alignment: Alignment.bottomRight,
                                             child: ElevatedButton(
-                                              onPressed: () {
+                                              onPressed: () async {
                                                 setState(() {
                                                   for (int i = 0;
                                                       i < isSelected.length;
@@ -155,6 +156,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                     isSelected[i] = false;
                                                   }
                                                 });
+                                                await initializeTransactions();
                                                 Navigator.pushReplacementNamed(
                                                     context,
                                                     TransactionHistoryScreen

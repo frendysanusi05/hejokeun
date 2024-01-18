@@ -7,7 +7,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class StatistikScreen extends StatefulWidget {
-  StatistikScreen({super.key});
+  const StatistikScreen({super.key});
   static String id = 'statistik_screen';
 
   @override
