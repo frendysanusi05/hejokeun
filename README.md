@@ -16,17 +16,38 @@ Hejokeun adalah sebuah aplikasi yang memberikan layanan pengelolaan sampah rumah
 -   Flutter 3.16.5
 -   Firebase
 
-## Features
+## How To Run
 
--   User Login dan Register
-    Pengguna dapat menggunakan aplikasi Hejokeun dengan melakukan login dengan akun yang dimilikinya. Bila pengguna belum memiliki akun, maka ia dapat mendaftarkan akun dengan menggunakan kode unik rumah yang dimiliki. Login dan register dapat dilakukan menggunakan email dan password, Google, dan Facebook.
--   Main menu
-    Tampilan awal yang ditunjukan ke pengguna setelah melakukan login. Pada tampilan ini pengguna dapat menuju ke fitur-fitur yang ingin digunakannya.
+-   Download the APK from [our release](https://github.com/frendysanusi05/hejokeun/releases/tag/publish).
+-   Install the APK on your Android device.
+-   Use the app!
 
-## Screenshots
+## App Screenshots
 
-![Urutan kiri-kanan: layar selamat datang, layar register, layar login, layar tampilan utama](docs/images/screens_1.png)
-Urutan kiri-kanan: Layar selamat datang, Layar register, Layar login, Layar tampilan utama
+<table width="100%">
+  <tbody>
+    <tr>
+      <td width="1%"><img src="/docs/images/splashscreen.jpg"/></td>
+      <td width="1%"><img src="/docs/images/dashboard.jpg"/></td>
+       <td width="1%"><img src="/docs/images/login.jpg"/></td>
+    </tr>
+    <tr>
+      <td width="1%"><img src="/docs/images/signup.jpg"/></td>
+      <td width="1%"><img src="/docs/images/reminder.png"/></td>
+       <td width="1%"><img src="/docs/images/logbook.png"/></td>
+    </tr>
+    <tr>
+      <td width="1%"><img src="/docs/images/relation.png"/></td>
+      <td width="1%"><img src="/docs/images/profile.png"/></td>
+      <td width="1%"><img src="/docs/images/log-activity.png"/></td>
+    </tr>
+    <tr>
+      <td width="1%"><img src="/docs/images/add-meal.png"/></td>
+      <td width="1%"><img src="/docs/images/add-exercise.png"/></td>
+      <td width="1%"><img src="/docs/images/add-sleep.png"/></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Created By
 
