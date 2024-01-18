@@ -203,298 +203,323 @@ class _StatistikScreenState extends State<StatistikScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topLeft,
-        children: [
-          Container(
-            height: 100,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/main_backdrop.png'),
-                fit: BoxFit.fill,
+      body: SingleChildScrollView(
+        child: Container(
+          height: 750,
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.topLeft,
+            children: [
+              Container(
+                height: 100,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/main_backdrop.png'),
+                    fit: BoxFit.fill,
+                  ),
+                ),
               ),
-            ),
-          ),
-          Positioned(
-            top: 80,
-            child: SingleChildScrollView(
-              child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 32, bottom: 32, left: 32, right: 32),
-                      child: Flex(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        direction: Axis.vertical,
-                        children: [
-                          Text(
-                            "${lastWeekTimestamp.toDate().day} ${monthsFull[lastWeekTimestamp.toDate().month - 1]} ${lastWeekTimestamp.toDate().year} - ${todayTimestamp.toDate().day} ${monthsFull[todayTimestamp.toDate().month - 1]} ${todayTimestamp.toDate().year}",
-                            style: kBR3.copyWith(color: kDarkBrown),
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
+              Positioned(
+                top: 80,
+                child: SingleChildScrollView(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 32, bottom: 32, left: 32, right: 32),
+                          child: Flex(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            direction: Axis.vertical,
                             children: [
                               Text(
-                                '${(totalDonasi / 8).toStringAsFixed(2)}',
-                                style: kH5.copyWith(color: kDarkBrown),
+                                "${lastWeekTimestamp.toDate().day} ${monthsFull[lastWeekTimestamp.toDate().month - 1]} ${lastWeekTimestamp.toDate().year} - ${todayTimestamp.toDate().day} ${monthsFull[todayTimestamp.toDate().month - 1]} ${todayTimestamp.toDate().year}",
+                                style: kBR3.copyWith(color: kDarkBrown),
                               ),
-                              Text(
-                                ' kg sampah/hari',
-                                style: kH7.copyWith(color: kDarkBrown),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Text(
+                                    '${(totalDonasi / 8).toStringAsFixed(2)}',
+                                    style: kH5.copyWith(color: kDarkBrown),
+                                  ),
+                                  Text(
+                                    ' kg sampah/hari',
+                                    style: kH7.copyWith(color: kDarkBrown),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 300,
+                                child: SfCartesianChart(
+                                  primaryXAxis: const CategoryAxis(
+                                    majorGridLines: MajorGridLines(width: 0),
+                                  ),
+                                  primaryYAxis: NumericAxis(
+                                      majorGridLines: MajorGridLines(width: 0),
+                                      numberFormat: NumberFormat.compact()),
+                                  legend: Legend(
+                                      height: '50%',
+                                      itemPadding: 8,
+                                      alignment: ChartAlignment.center,
+                                      isVisible: true,
+                                      position: LegendPosition.bottom,
+                                      overflowMode: LegendItemOverflowMode.wrap,
+                                      legendItemBuilder: (String name,
+                                          dynamic series,
+                                          dynamic point,
+                                          int index) {
+                                        return Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 8,
+                                              right: 8,
+                                              top: 4,
+                                              bottom: 4),
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[100],
+                                              borderRadius:
+                                                  BorderRadius.circular(4)),
+                                          child: FittedBox(
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  width: 10,
+                                                  height: 10,
+                                                  decoration: BoxDecoration(
+                                                      color: series.color,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              2)),
+                                                ),
+                                                const SizedBox(width: 4),
+                                                Text(
+                                                  name,
+                                                  style: kBR4.copyWith(
+                                                      color: kDarkBrown),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                  margin: EdgeInsets.all(0),
+                                  series: <CartesianSeries>[
+                                    StackedColumnSeries<StatistikData, String>(
+                                      color: const Color.fromRGBO(
+                                          100, 165, 185, 100),
+                                      name: 'Organik',
+                                      dataSource: _chartData,
+                                      xValueMapper: (StatistikData data, _) =>
+                                          data.date,
+                                      yValueMapper: (StatistikData data, _) =>
+                                          data.organik,
+                                    ),
+                                    StackedColumnSeries<StatistikData, String>(
+                                      color: const Color.fromRGBO(
+                                          243, 223, 96, 100),
+                                      name: 'Botol',
+                                      dataSource: _chartData,
+                                      xValueMapper: (StatistikData data, _) =>
+                                          data.date,
+                                      yValueMapper: (StatistikData data, _) =>
+                                          data.botol,
+                                    ),
+                                    StackedColumnSeries<StatistikData, String>(
+                                      color: kBrown,
+                                      name: 'Elektronik',
+                                      dataSource: _chartData,
+                                      xValueMapper: (StatistikData data, _) =>
+                                          data.date,
+                                      yValueMapper: (StatistikData data, _) =>
+                                          data.elektronik,
+                                    ),
+                                    StackedColumnSeries<StatistikData, String>(
+                                      color: const Color.fromRGBO(
+                                          227, 116, 118, 100),
+                                      name: 'Lainnya',
+                                      dataSource: _chartData,
+                                      xValueMapper: (StatistikData data, _) =>
+                                          data.date,
+                                      yValueMapper: (StatistikData data, _) =>
+                                          data.lainnya,
+                                    ),
+                                    StackedColumnSeries<StatistikData, String>(
+                                      color: const Color.fromRGBO(
+                                          178, 210, 74, 100),
+                                      name: 'Minyak Jelantah',
+                                      dataSource: _chartData,
+                                      xValueMapper: (StatistikData data, _) =>
+                                          data.date,
+                                      yValueMapper: (StatistikData data, _) =>
+                                          data.minyakJelantah,
+                                    ),
+                                    StackedColumnSeries<StatistikData, String>(
+                                      color: const Color.fromRGBO(
+                                          255, 203, 153, 100),
+                                      name: 'Plastik',
+                                      dataSource: _chartData,
+                                      xValueMapper: (StatistikData data, _) =>
+                                          data.date,
+                                      yValueMapper: (StatistikData data, _) =>
+                                          data.plastik,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Container(
+                                padding: EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: const Color.fromRGBO(
+                                            60, 60, 67, 20),
+                                        width: 0.2),
+                                    borderRadius: BorderRadius.circular(16)),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Jumlah Donasi',
+                                        style: kBS3.copyWith(color: kDarkBrown),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Sampah Organik',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          ),
+                                          Text(
+                                            '${totalOrganik.toStringAsFixed(2)}',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Sampah Botol',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          ),
+                                          Text(
+                                            '${totalBotol.toStringAsFixed(2)}',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Sampah Plastik',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          ),
+                                          Text(
+                                            '${totalPlastik.toStringAsFixed(2)}',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Minyak Jelantah',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          ),
+                                          Text(
+                                            '${totalMinyakJelantah.toStringAsFixed(2)}',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Sampah Elektronik',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          ),
+                                          Text(
+                                            '${totalElektronik.toStringAsFixed(2)}',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Sampah Lainnya',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          ),
+                                          Text(
+                                            '${totalLainnya.toStringAsFixed(2)}',
+                                            style: kBR4.copyWith(
+                                                color: kDarkBrown),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      const Divider(),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Total Donasi',
+                                            style: kBS3.copyWith(
+                                                color: kDarkBrown),
+                                          ),
+                                          Text(
+                                            '${totalDonasi.toStringAsFixed(2)}',
+                                            style: kBS3.copyWith(
+                                                color: kDarkBrown),
+                                          )
+                                        ],
+                                      ),
+                                    ]),
                               )
                             ],
                           ),
-                          const SizedBox(height: 20),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 300,
-                            child: SfCartesianChart(
-                              primaryXAxis: const CategoryAxis(
-                                majorGridLines: MajorGridLines(width: 0),
-                              ),
-                              primaryYAxis: NumericAxis(
-                                  majorGridLines: MajorGridLines(width: 0),
-                                  numberFormat: NumberFormat.compact()),
-                              legend: Legend(
-                                  height: '50%',
-                                  itemPadding: 8,
-                                  alignment: ChartAlignment.center,
-                                  isVisible: true,
-                                  position: LegendPosition.bottom,
-                                  overflowMode: LegendItemOverflowMode.wrap,
-                                  legendItemBuilder: (String name,
-                                      dynamic series,
-                                      dynamic point,
-                                      int index) {
-                                    return Container(
-                                      padding: const EdgeInsets.only(
-                                          left: 8, right: 8, top: 4, bottom: 4),
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey[100],
-                                          borderRadius:
-                                              BorderRadius.circular(4)),
-                                      child: FittedBox(
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              width: 10,
-                                              height: 10,
-                                              decoration: BoxDecoration(
-                                                  color: series.color,
-                                                  borderRadius:
-                                                      BorderRadius.circular(2)),
-                                            ),
-                                            const SizedBox(width: 4),
-                                            Text(
-                                              name,
-                                              style: kBR4.copyWith(
-                                                  color: kDarkBrown),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                              margin: EdgeInsets.all(0),
-                              series: <CartesianSeries>[
-                                StackedColumnSeries<StatistikData, String>(
-                                  color:
-                                      const Color.fromRGBO(100, 165, 185, 100),
-                                  name: 'Organik',
-                                  dataSource: _chartData,
-                                  xValueMapper: (StatistikData data, _) =>
-                                      data.date,
-                                  yValueMapper: (StatistikData data, _) =>
-                                      data.organik,
-                                ),
-                                StackedColumnSeries<StatistikData, String>(
-                                  color:
-                                      const Color.fromRGBO(243, 223, 96, 100),
-                                  name: 'Botol',
-                                  dataSource: _chartData,
-                                  xValueMapper: (StatistikData data, _) =>
-                                      data.date,
-                                  yValueMapper: (StatistikData data, _) =>
-                                      data.botol,
-                                ),
-                                StackedColumnSeries<StatistikData, String>(
-                                  color: kBrown,
-                                  name: 'Elektronik',
-                                  dataSource: _chartData,
-                                  xValueMapper: (StatistikData data, _) =>
-                                      data.date,
-                                  yValueMapper: (StatistikData data, _) =>
-                                      data.elektronik,
-                                ),
-                                StackedColumnSeries<StatistikData, String>(
-                                  color:
-                                      const Color.fromRGBO(227, 116, 118, 100),
-                                  name: 'Lainnya',
-                                  dataSource: _chartData,
-                                  xValueMapper: (StatistikData data, _) =>
-                                      data.date,
-                                  yValueMapper: (StatistikData data, _) =>
-                                      data.lainnya,
-                                ),
-                                StackedColumnSeries<StatistikData, String>(
-                                  color:
-                                      const Color.fromRGBO(178, 210, 74, 100),
-                                  name: 'Minyak Jelantah',
-                                  dataSource: _chartData,
-                                  xValueMapper: (StatistikData data, _) =>
-                                      data.date,
-                                  yValueMapper: (StatistikData data, _) =>
-                                      data.minyakJelantah,
-                                ),
-                                StackedColumnSeries<StatistikData, String>(
-                                  color:
-                                      const Color.fromRGBO(255, 203, 153, 100),
-                                  name: 'Plastik',
-                                  dataSource: _chartData,
-                                  xValueMapper: (StatistikData data, _) =>
-                                      data.date,
-                                  yValueMapper: (StatistikData data, _) =>
-                                      data.plastik,
-                                )
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          Container(
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: const Color.fromRGBO(60, 60, 67, 20),
-                                    width: 0.2),
-                                borderRadius: BorderRadius.circular(16)),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Jumlah Donasi',
-                                    style: kBS3.copyWith(color: kDarkBrown),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Sampah Organik',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      ),
-                                      Text(
-                                        '${totalOrganik}',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Sampah Botol',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      ),
-                                      Text(
-                                        '${totalBotol}',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Sampah Plastik',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      ),
-                                      Text(
-                                        '${totalPlastik}',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Minyak Jelantah',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      ),
-                                      Text(
-                                        '${totalMinyakJelantah}',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Sampah Elektronik',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      ),
-                                      Text(
-                                        '${totalElektronik}',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Sampah Lainnya',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      ),
-                                      Text(
-                                        '${totalLainnya}',
-                                        style: kBR4.copyWith(color: kDarkBrown),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10),
-                                  const Divider(),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Total Donasi',
-                                        style: kBS3.copyWith(color: kDarkBrown),
-                                      ),
-                                      Text(
-                                        '${totalDonasi}',
-                                        style: kBS3.copyWith(color: kDarkBrown),
-                                      )
-                                    ],
-                                  ),
-                                ]),
-                          )
-                        ],
-                      ),
-                    ),
-                  )),
-            ),
-          )
-        ],
+                        ),
+                      )),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
